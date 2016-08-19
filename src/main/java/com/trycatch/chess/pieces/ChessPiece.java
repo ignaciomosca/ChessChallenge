@@ -2,6 +2,8 @@ package com.trycatch.chess.pieces;
 
 import com.trycatch.chess.board.Position;
 
+import java.util.List;
+
 /**
  * Created by ignacio on 19/08/16.
  */
@@ -9,11 +11,16 @@ public abstract class ChessPiece {
 
     protected Position pos;
     public abstract String toString();
-    public abstract void moves();
-    public abstract boolean isSafe();
 
-    public void place(int row, int col, ChessPiece piece){
-        pos = new Position(row,col,this);
+    //returns all possible positions that can be reached
+    public abstract List<Position> moves();
+
+    public Position place(int row, int col, ChessPiece piece){
+        if(!piece.toString().equals("_")){
+            return new Position(row,col,this);
+        }else{
+            return new Position(row,col,new NoPiece());
+        }
     }
 
     public Position getPos() {

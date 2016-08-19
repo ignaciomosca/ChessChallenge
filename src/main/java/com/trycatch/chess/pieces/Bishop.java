@@ -1,12 +1,17 @@
 package com.trycatch.chess.pieces;
 
+import com.trycatch.chess.board.Position;
+
+import java.util.List;
+
 /**
  * Represents a Bishop
  * Created by ignacio on 19/08/16.
  */
 public class Bishop extends ChessPiece{
-    public void moves() {
 
+    public List<Position> moves(){
+        return null;
     }
 
     public boolean isSafe() {

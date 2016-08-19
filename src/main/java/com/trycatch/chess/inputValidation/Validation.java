@@ -20,7 +20,9 @@ public class Validation {
         return pieces;
     }
 
-    //TODO document format: queens:2;kings:3;
+    //Current format is the following
+    //[name of piece in plural]:[number of pieces]
+    //Example format: queens:2;kings:3;
     public static void parsePiece(String pn, List<ChessPiece> pieces) throws UndefinedPieceException {
         String[] pieceNumber = pn.split(":");
         ChessPiece piece = parseName(pieceNumber[0]);
