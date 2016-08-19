@@ -1,6 +1,9 @@
 package com.trycatch.chess.board;
 
 import com.trycatch.chess.pieces.ChessPiece;
+import com.trycatch.chess.pieces.NoPiece;
+
+import java.util.List;
 
 /**
  * Represents and MxN Chess board
@@ -10,16 +13,28 @@ public class Board {
 
     private int M;
     private int N;
-    private ChessPiece[] pieces;
+    private List<Position> positions;
 
-    public Board(){
+    public Board() {
 
     }
 
-    public Board(int m, int n, ChessPiece[] pieces) {
+    public Board(int m, int n, List<Position> positions) {
         M = m;
         N = n;
-        this.pieces = pieces;
+        this.positions = positions;
+    }
+
+    public void showBoard() {
+         for (int r = 1; r < M; r++) {
+                for (int c = 1; c < N; c++)
+                    System.out.print(findPiece(r,c).toString() + " ");
+                System.out.println();
+            }
+    }
+
+    public ChessPiece findPiece(int row, int col){
+        return positions.stream().filter(p -> p.getRow()==row && p.getCol()==col).map(Position::getPiece).findFirst().orElse(new NoPiece());
     }
 
     public int getM() {
@@ -38,11 +53,11 @@ public class Board {
         N = n;
     }
 
-    public ChessPiece[] getPieces() {
-        return pieces;
+    public List<Position> getPositions() {
+        return positions;
     }
 
-    public void setPieces(ChessPiece[] pieces) {
-        this.pieces = pieces;
+    public void setPieces(List<Position> positions) {
+        this.positions = positions;
     }
 }
