@@ -1,22 +1,20 @@
 package com.trycatch.chess.pieces;
 
-import com.trycatch.chess.board.Position;
-
 /**
  * Represents a Chess Queen
  * Created by ignacio on 19/08/16.
  */
 public class Queen extends ChessPiece {
 
-    public boolean attacks(Position dest) {
-        if(this.getPos()!=null && dest!=null){
-            boolean sameRow=this.getPos().getRow() == dest.getRow();
-            boolean sameCol=this.getPos().getCol() == dest.getCol();
-            boolean sameDiag=Math.abs(dest.getRow() - this.getPos().getRow()) == Math.abs(dest.getCol() - this.getPos().getCol());
+    public Queen(int row, int col) {
+        super(row, col);
+    }
+
+    public boolean attacks(ChessPiece dest) {
+            boolean sameRow=this.getRow() == dest.getRow();
+            boolean sameCol=this.getCol() == dest.getCol();
+            boolean sameDiag=Math.abs(dest.getRow() - this.getRow()) == Math.abs(dest.getCol() - this.getCol());
             return sameRow || sameCol || sameDiag;
-        }else{
-            return false;
-        }
     }
 
     @Override

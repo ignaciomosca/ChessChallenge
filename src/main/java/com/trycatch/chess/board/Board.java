@@ -5,7 +5,6 @@ import com.trycatch.chess.pieces.NoPiece;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Represents and MxN Chess board
@@ -15,19 +14,19 @@ public class Board {
 
     private int M;
     private int N;
-    private List<Position> positions;
+    private ChessPiece[][] positions;
 
     public Board(int m, int n) {
         this.M = m;
         this.N = n;
-        initializePositions(m,n);
+        initializePositions(m, n);
     }
 
     private void initializePositions(int m, int n) {
-        this.positions = new ArrayList<>();
+        this.positions = new ChessPiece[M][N];
         for (int row = 1; row < m; row++) {
             for (int col = 1; col < n; col++) {
-                this.positions.add(new Position(row,col, new NoPiece()));
+                positions[row][col] = new NoPiece(row, col);
             }
         }
     }
@@ -41,30 +40,42 @@ public class Board {
         System.out.println();
     }
 
-    public void place(Position position, ChessPiece chessPiece){
-        chessPiece.setPos(position);
-        position.setPiece(chessPiece);
-        this.getPositions().add(position);
+    public void place(ChessPiece piece) {
+        this.positions[piece.getRow()][piece.getCol()] = piece;
     }
 
-    public List<ChessPiece> placedPieces(){
-        return this.getPositions().stream().filter(p->p.getPiece().toString()!="_").map(Position::getPiece).collect(Collectors.toList());
+    public List<ChessPiece> placedPieces() {
+        List<ChessPiece> placedPieces = new ArrayList<>();
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                ChessPiece piece = this.positions[i][j];
+                if (!piece.toString().equals("_")) {
+                    placedPieces.add(piece);
+                }
+            }
+        }
+        return placedPieces;
     }
 
-    public ChessPiece findPiece(int row, int col){
-        return positions.stream().filter(p -> p.getRow()==row && p.getCol()==col).map(Position::getPiece).findFirst().orElse(new NoPiece());
+    public ChessPiece findPiece(int row, int col) {
+        return positions[row][col];
     }
 
-    public ChessPiece findPiece(Position p){
-        return positions.stream().filter(pos -> p.getCol()==pos.getCol() && p.getRow()==pos.getRow()).map(Position::getPiece).findFirst().orElse(new NoPiece());
+    public List<ChessPiece> emptyPositions() {
+        List<ChessPiece> emptyPositions = new ArrayList<>();
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                ChessPiece position = this.positions[i][j];
+                if (position.toString().equals("_")) {
+                    emptyPositions.add(position);
+                }
+            }
+        }
+        return emptyPositions;
     }
 
-    public List<Position> getPositions() {
-        return positions;
-    }
-
-    public void setPieces(List<Position> positions) {
-        this.positions = positions;
+    public boolean isEmpty(ChessPiece p){
+        return this.positions[p.getRow()][p.getCol()].toString().equals("_");
     }
 
     @Override
@@ -77,11 +88,15 @@ public class Board {
         if (M != board.M) return false;
         if (N != board.N) return false;
         return positions != null ? positions.equals(board.positions) : board.positions == null;
-
     }
 
-    public void remove(Position p, ChessPiece c) {
-        p.setPiece(new NoPiece());
-        c.setPos(null);
+    public boolean isSafe(ChessPiece c) {
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                ChessPiece p = this.positions[i][j];
+                return (!c.attacks(p)) || (!p.attacks(c));
+            }
+        }
+        return true;
     }
 }

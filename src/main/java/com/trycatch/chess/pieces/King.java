@@ -1,7 +1,5 @@
 package com.trycatch.chess.pieces;
 
-import com.trycatch.chess.board.Position;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,13 +9,17 @@ import java.util.List;
  */
 public class King extends ChessPiece {
 
-    public boolean attacks(Position dest) {
-        int row = this.getPos().getRow();
-        int col = this.getPos().getCol();
-        List<Position> possibleMoves = new ArrayList<>();
+    public King(int row, int col) {
+        super(row, col);
+    }
+
+    public boolean attacks(ChessPiece dest) {
+        int row = this.getRow();
+        int col = this.getCol();
+        List<ChessPiece> possibleMoves = new ArrayList<>();
         for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                possibleMoves.add(new Position(row + i, col + j, new King()));
+                possibleMoves.add(new King(row + i, col + j));
             }
         }
         return possibleMoves.contains(dest);

@@ -1,14 +1,16 @@
 package com.trycatch.chess.pieces;
 
-import com.trycatch.chess.board.Position;
-
 /**
  * Represents a unoccupied position in the Chess Board
  * Created by ignacio on 19/08/16.
  */
 public class NoPiece extends ChessPiece {
 
-    public boolean attacks(Position dest) {
+    public NoPiece(int row, int col) {
+        super(row, col);
+    }
+
+    public boolean attacks(ChessPiece dest) {
         return false;
     }
 

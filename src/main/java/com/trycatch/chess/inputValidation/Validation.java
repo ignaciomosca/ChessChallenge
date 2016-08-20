@@ -66,15 +66,15 @@ public class Validation {
     private static ChessPiece parseName(String pieceName) throws UndefinedPieceException {
         switch (pieceName.toLowerCase()) {
             case "queen":
-                return new Queen();
+                return new Queen(0,0);
             case "king":
-                return new King();
+                return new King(0,0);
             case "rook":
-                return new Rook();
+                return new Rook(0,0);
             case "bishop":
-                return new Bishop();
+                return new Bishop(0,0);
             case "knight":
-                return new Knight();
+                return new Knight(0,0);
             default:
                 throw new UndefinedPieceException();
         }
