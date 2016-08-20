@@ -19,8 +19,8 @@ public class Main {
             int M = Integer.parseInt(args[0])+1;
             int N = Integer.parseInt(args[1])+1;
             String piecesInput = args[2];
-            Board initialBoard = new Board(M,N);
             List<ChessPiece> pieces = Validation.parsePieces(piecesInput);
+            Board initialBoard = new Board(M,N,pieces.size());
             List<Board> solutions = new ArrayList<>();
             ChessChallengeSolver.solution(initialBoard, pieces, solutions);
             solutions.forEach(Board::showBoard);

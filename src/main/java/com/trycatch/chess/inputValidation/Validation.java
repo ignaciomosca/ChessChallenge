@@ -14,8 +14,8 @@ public class Validation {
     public static List<ChessPiece> parsePieces(String piecesInput) throws UndefinedPieceException {
         String[] pieceNumber = piecesInput.split(";");
         List<ChessPiece> pieces = new ArrayList<>();
-        for(String pn : pieceNumber){
-            parsePiece(pn,pieces);
+        for (String pn : pieceNumber) {
+            parsePiece(pn, pieces);
         }
         return pieces;
     }
@@ -27,13 +27,13 @@ public class Validation {
         String[] pieceNumber = pn.split(":");
         ChessPiece piece = parseName(pieceNumber[0]);
         int number = Integer.parseInt(pieceNumber[1]);
-        for(int i=0;i<number;i++){
+        for (int i = 0; i < number; i++) {
             pieces.add(piece);
         }
     }
 
     public static ChessPiece parseName(String pieceName) throws UndefinedPieceException {
-        switch (pieceName.toLowerCase()){
+        switch (pieceName.toLowerCase()) {
             case "queen":
                 return new Queen();
             case "king":

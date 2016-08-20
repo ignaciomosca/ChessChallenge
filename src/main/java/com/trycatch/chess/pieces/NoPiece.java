@@ -7,7 +7,7 @@ import com.trycatch.chess.board.Position;
  */
 public class NoPiece extends ChessPiece {
 
-    public boolean attacks(Position dest){
+    public boolean attacks(Position dest) {
         return false;
     }
 

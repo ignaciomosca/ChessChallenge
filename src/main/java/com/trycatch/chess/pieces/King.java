@@ -8,7 +8,7 @@ import com.trycatch.chess.board.Position;
  */
 public class King extends ChessPiece {
 
-    public boolean attacks(Position dest){
+    public boolean attacks(Position dest) {
         return false;
     }
 

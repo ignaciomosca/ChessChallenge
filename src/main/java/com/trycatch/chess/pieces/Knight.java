@@ -6,9 +6,9 @@ import com.trycatch.chess.board.Position;
  * Represents a Chess Knight
  * Created by ignacio on 19/08/16.
  */
-public class Knight extends ChessPiece{
+public class Knight extends ChessPiece {
 
-    public boolean attacks(Position dest){
+    public boolean attacks(Position dest) {
         return false;
     }
 

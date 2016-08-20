@@ -13,20 +13,23 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ChessChallengeSolver {
 
     public static List<Board> solution(Board board, List<ChessPiece> pieces, List<Board> solutions) {
-        if (pieces.isEmpty()) {
+        if (pieces.isEmpty() && board.getPlacedPieces()==board.getNumberOfInitialPieces()) {
             solutions.add(board);
         }
 
         CopyOnWriteArrayList<Position> positions = new CopyOnWriteArrayList<>(board.getPositions());
         CopyOnWriteArrayList<ChessPiece> chessPieces = new CopyOnWriteArrayList<>(pieces);
 
-        for(Position p : positions){
-            for(ChessPiece c : chessPieces){
-                if(!c.attacks(p)){
-                    board.place(p,c);
-                    pieces.remove(c);
-                    solution(board,pieces,solutions);
-                    pieces.add(c);
+        for (ChessPiece c : chessPieces) {
+            for (Position p : positions) {
+                if (!c.attacks(p)) {
+                    board.place(p, c);
+                    chessPieces.remove(c);
+                    positions.remove(p);
+                    board.showBoard();
+                    solution(board, chessPieces, solutions);
+                    chessPieces.add(c);
+                    positions.add(p);
                     board.remove(p);
                 }
             }

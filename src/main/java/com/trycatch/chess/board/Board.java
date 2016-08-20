@@ -15,16 +15,21 @@ public class Board {
     private int M;
     private int N;
     private List<Position> positions;
+    private long numberOfInitialPieces;
+    private long placedPieces;
 
-    public Board(int m, int n) {
-        M = m;
-        N = n;
+    public Board(int m, int n, int numberOfInitialPieces) {
+        this.M = m;
+        this.N = n;
+        this.placedPieces=0;
+        this.numberOfInitialPieces=numberOfInitialPieces;
         initializePositions(m,n);
     }
 
     public Board(int m, int n, List<Position> positions) {
         M = m;
         N = n;
+        this.placedPieces = positions.stream().filter(p -> !p.getPiece().toString().equals("_")).count();
         this.positions = positions;
     }
 
@@ -49,6 +54,7 @@ public class Board {
     public void place(Position position, ChessPiece chessPiece){
         chessPiece.setPos(position);
         position.setPiece(chessPiece);
+        this.setPlacedPieces(this.getPlacedPieces()+1);
         this.getPositions().add(position);
     }
 
@@ -87,5 +93,21 @@ public class Board {
 
     public void remove(Position p) {
         this.positions.remove(p);
+    }
+
+    public long getPlacedPieces() {
+        return placedPieces;
+    }
+
+    public void setPlacedPieces(long placedPieces) {
+        this.placedPieces = placedPieces;
+    }
+
+    public long getNumberOfInitialPieces() {
+        return numberOfInitialPieces;
+    }
+
+    public void setNumberOfInitialPieces(long numberOfInitialPieces) {
+        this.numberOfInitialPieces = numberOfInitialPieces;
     }
 }

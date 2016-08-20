@@ -8,6 +8,7 @@ import com.trycatch.chess.board.Position;
 public abstract class ChessPiece {
 
     protected Position pos;
+
     public abstract String toString();
 
     //returns all possible positions that can be reached

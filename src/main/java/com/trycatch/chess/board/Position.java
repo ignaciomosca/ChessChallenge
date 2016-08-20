@@ -20,9 +20,9 @@ public class Position {
 
     @Override
     public String toString() {
-        if(piece == null){
+        if (piece == null) {
             return " ";
-        }else{
+        } else {
             return piece.toString();
         }
     }
