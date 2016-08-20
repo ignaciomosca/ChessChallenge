@@ -9,7 +9,7 @@ import com.trycatch.chess.board.Position;
 public class Bishop extends ChessPiece {
 
     public boolean attacks(Position dest) {
-        boolean sameDiag=Math.abs(dest.getRow() - this.getPos().getRow()) == Math.abs(dest.getCol() - this.getPos().getCol());
+        boolean sameDiag = Math.abs(dest.getRow() - this.getPos().getRow()) == Math.abs(dest.getCol() - this.getPos().getCol());
         return this.getPos() != null && sameDiag;
     }
 

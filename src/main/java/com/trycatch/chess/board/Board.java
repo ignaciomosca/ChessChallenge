@@ -5,6 +5,7 @@ import com.trycatch.chess.pieces.NoPiece;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents and MxN Chess board
@@ -15,14 +16,10 @@ public class Board {
     private int M;
     private int N;
     private List<Position> positions;
-    private long numberOfInitialPieces;
-    private long placedPieces;
 
-    public Board(int m, int n, int numberOfInitialPieces) {
+    public Board(int m, int n) {
         this.M = m;
         this.N = n;
-        this.placedPieces=0;
-        this.numberOfInitialPieces=numberOfInitialPieces;
         initializePositions(m,n);
     }
 
@@ -47,12 +44,19 @@ public class Board {
     public void place(Position position, ChessPiece chessPiece){
         chessPiece.setPos(position);
         position.setPiece(chessPiece);
-        this.placedPieces += 1;
         this.getPositions().add(position);
+    }
+
+    public List<ChessPiece> placedPieces(){
+        return this.getPositions().stream().filter(p->p.getPiece().toString()!="_").map(Position::getPiece).collect(Collectors.toList());
     }
 
     public ChessPiece findPiece(int row, int col){
         return positions.stream().filter(p -> p.getRow()==row && p.getCol()==col).map(Position::getPiece).findFirst().orElse(new NoPiece());
+    }
+
+    public ChessPiece findPiece(Position p){
+        return positions.stream().filter(pos -> p.getCol()==pos.getCol() && p.getRow()==pos.getRow()).map(Position::getPiece).findFirst().orElse(new NoPiece());
     }
 
     public List<Position> getPositions() {
@@ -76,8 +80,8 @@ public class Board {
 
     }
 
-    public boolean validSolution() {
-        return this.placedPieces==numberOfInitialPieces;
-
+    public void remove(Position p, ChessPiece c) {
+        p.setPiece(new NoPiece());
+        c.setPos(null);
     }
 }

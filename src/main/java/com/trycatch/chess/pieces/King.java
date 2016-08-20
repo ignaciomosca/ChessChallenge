@@ -15,9 +15,9 @@ public class King extends ChessPiece {
         int row = this.getPos().getRow();
         int col = this.getPos().getCol();
         List<Position> possibleMoves = new ArrayList<>();
-        for (int i = -1; i <= 1 ; i++) {
+        for (int i = -1; i <= 1; i++) {
             for (int j = -1; j <= 1; j++) {
-                possibleMoves.add(new Position(row+i,col+j,new King()));
+                possibleMoves.add(new Position(row + i, col + j, new King()));
             }
         }
         return possibleMoves.contains(dest);

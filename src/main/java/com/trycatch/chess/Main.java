@@ -12,6 +12,7 @@ import java.util.List;
 
 
 /**
+ * Main class
  * Created by ignacio on 19/08/16.
  */
 public class Main {
@@ -20,8 +21,8 @@ public class Main {
             BoardPieces boardPieces = Validation.parseInput(args);
             Board initialBoard = boardPieces.getBoard();
             List<ChessPiece> pieces = boardPieces.getPieces();
-            List<Board> solutions = new ArrayList<>();
-            ChessChallengeSolver.solution(initialBoard, pieces, solutions);
+            List<Board> solutions = ChessChallengeSolver.solution(initialBoard, pieces, new ArrayList<>());
+            System.out.println("Number of Solutions: " + solutions.size());
         } catch (UndefinedPieceException e) {
             e.printStackTrace();
         }

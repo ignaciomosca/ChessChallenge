@@ -9,7 +9,7 @@ import com.trycatch.chess.board.Position;
 public class Queen extends ChessPiece {
 
     public boolean attacks(Position dest) {
-        if(this.getPos()!=null){
+        if(this.getPos()!=null && dest!=null){
             boolean sameRow=this.getPos().getRow() == dest.getRow();
             boolean sameCol=this.getPos().getCol() == dest.getCol();
             boolean sameDiag=Math.abs(dest.getRow() - this.getPos().getRow()) == Math.abs(dest.getCol() - this.getPos().getCol());

@@ -9,7 +9,7 @@ import com.trycatch.chess.board.Position;
 public class Rook extends ChessPiece {
 
     public boolean attacks(Position dest) {
-        boolean diagForward=dest.getRow() == this.getPos().getRow();
+        boolean diagForward = dest.getRow() == this.getPos().getRow();
         return this.getPos() != null && diagForward;
     }
 

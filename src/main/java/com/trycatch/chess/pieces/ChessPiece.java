@@ -11,8 +11,8 @@ public abstract class ChessPiece {
     protected Position pos;
 
     /**
-     * returns all possible positions that can be reached
      * @param dest Tentative position for the chess piece
+     * @return Returns all possible positions that can be reached
      * */
     public abstract boolean attacks(Position dest);
 

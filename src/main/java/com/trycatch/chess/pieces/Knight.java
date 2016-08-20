@@ -15,11 +15,11 @@ public class Knight extends ChessPiece {
         int row = this.getPos().getRow();
         int col = this.getPos().getCol();
         List<Position> possibleMoves = new ArrayList<>();
-        int[] moves = new int[]{-2,-1,1,2};
-        for (int i = -2; i <=2 ; i++) {
+        int[] moves = new int[]{-2, -1, 1, 2};
+        for (int i = -2; i <= 2; i++) {
             for (int j = -2; j <= 2; j++) {
-                if(i!=j){
-                    possibleMoves.add(new Position(row+i,col+j,new Knight()));
+                if (i != j) {
+                    possibleMoves.add(new Position(row + i, col + j, new Knight()));
                 }
             }
         }
