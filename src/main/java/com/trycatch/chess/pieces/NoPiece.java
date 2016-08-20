@@ -3,7 +3,7 @@ package com.trycatch.chess.pieces;
 import com.trycatch.chess.board.Position;
 
 /**
- * Represents a un-occupied position in the Chess Board
+ * Represents a unoccupied position in the Chess Board
  * Created by ignacio on 19/08/16.
  */
 public class NoPiece extends ChessPiece {

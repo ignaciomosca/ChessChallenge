@@ -9,11 +9,8 @@ import com.trycatch.chess.board.Position;
 public class Bishop extends ChessPiece {
 
     public boolean attacks(Position dest) {
-        return false;
-    }
-
-    public boolean isSafe() {
-        return false;
+        boolean sameDiag=Math.abs(dest.getRow() - this.getPos().getRow()) == Math.abs(dest.getCol() - this.getPos().getCol());
+        return this.getPos() != null && sameDiag;
     }
 
     @Override

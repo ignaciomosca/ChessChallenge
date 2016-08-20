@@ -26,13 +26,6 @@ public class Board {
         initializePositions(m,n);
     }
 
-    public Board(int m, int n, List<Position> positions) {
-        M = m;
-        N = n;
-        this.placedPieces = positions.stream().filter(p -> !p.getPiece().toString().equals("_")).count();
-        this.positions = positions;
-    }
-
     private void initializePositions(int m, int n) {
         this.positions = new ArrayList<>();
         for (int row = 1; row < m; row++) {
@@ -66,14 +59,6 @@ public class Board {
         return positions;
     }
 
-    public int getM() {
-        return M;
-    }
-
-    public int getN() {
-        return N;
-    }
-
     public void setPieces(List<Position> positions) {
         this.positions = positions;
     }
@@ -89,27 +74,6 @@ public class Board {
         if (N != board.N) return false;
         return positions != null ? positions.equals(board.positions) : board.positions == null;
 
-    }
-
-    public void remove(Position position) {
-        position.setPiece(new NoPiece());
-        this.positions.remove(position);
-    }
-
-    public long getPlacedPieces() {
-        return placedPieces;
-    }
-
-    public void setPlacedPieces(long placedPieces) {
-        this.placedPieces = placedPieces;
-    }
-
-    public long getNumberOfInitialPieces() {
-        return numberOfInitialPieces;
-    }
-
-    public void setNumberOfInitialPieces(long numberOfInitialPieces) {
-        this.numberOfInitialPieces = numberOfInitialPieces;
     }
 
     public boolean validSolution() {
