@@ -46,6 +46,12 @@ public class Board {
         System.out.println();
     }
 
+    public void place(Position position, ChessPiece chessPiece){
+        chessPiece.setPos(position);
+        position.setPiece(chessPiece);
+        this.getPositions().add(position);
+    }
+
     public ChessPiece findPiece(int row, int col){
         return positions.stream().filter(p -> p.getRow()==row && p.getCol()==col).map(Position::getPiece).findFirst().orElse(new NoPiece());
     }
@@ -54,7 +60,32 @@ public class Board {
         return positions;
     }
 
+    public int getM() {
+        return M;
+    }
+
+    public int getN() {
+        return N;
+    }
+
     public void setPieces(List<Position> positions) {
         this.positions = positions;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board = (Board) o;
+
+        if (M != board.M) return false;
+        if (N != board.N) return false;
+        return positions != null ? positions.equals(board.positions) : board.positions == null;
+
+    }
+
+    public void remove(Position p) {
+        this.positions.remove(p);
     }
 }
