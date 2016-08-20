@@ -3,6 +3,7 @@ package com.trycatch.chess;
 import com.trycatch.chess.algorithm.ChessChallengeSolver;
 import com.trycatch.chess.board.Board;
 import com.trycatch.chess.exceptions.UndefinedPieceException;
+import com.trycatch.chess.inputValidation.BoardPieces;
 import com.trycatch.chess.inputValidation.Validation;
 import com.trycatch.chess.pieces.ChessPiece;
 
@@ -16,14 +17,11 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         try {
-            int M = Integer.parseInt(args[0])+1;
-            int N = Integer.parseInt(args[1])+1;
-            String piecesInput = args[2];
-            List<ChessPiece> pieces = Validation.parsePieces(piecesInput);
-            Board initialBoard = new Board(M,N,pieces.size());
+            BoardPieces boardPieces = Validation.parseInput(args);
+            Board initialBoard = boardPieces.getBoard();
+            List<ChessPiece> pieces = boardPieces.getPieces();
             List<Board> solutions = new ArrayList<>();
             ChessChallengeSolver.solution(initialBoard, pieces, solutions);
-            solutions.forEach(Board::showBoard);
         } catch (UndefinedPieceException e) {
             e.printStackTrace();
         }

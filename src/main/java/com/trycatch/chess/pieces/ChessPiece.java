@@ -9,8 +9,6 @@ public abstract class ChessPiece {
 
     protected Position pos;
 
-    public abstract String toString();
-
     //returns all possible positions that can be reached
     public abstract boolean attacks(Position dest);
 

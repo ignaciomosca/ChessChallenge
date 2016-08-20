@@ -54,7 +54,7 @@ public class Board {
     public void place(Position position, ChessPiece chessPiece){
         chessPiece.setPos(position);
         position.setPiece(chessPiece);
-        this.setPlacedPieces(this.getPlacedPieces()+1);
+        this.placedPieces += 1;
         this.getPositions().add(position);
     }
 
@@ -91,8 +91,9 @@ public class Board {
 
     }
 
-    public void remove(Position p) {
-        this.positions.remove(p);
+    public void remove(Position position) {
+        position.setPiece(new NoPiece());
+        this.positions.remove(position);
     }
 
     public long getPlacedPieces() {
@@ -109,5 +110,10 @@ public class Board {
 
     public void setNumberOfInitialPieces(long numberOfInitialPieces) {
         this.numberOfInitialPieces = numberOfInitialPieces;
+    }
+
+    public boolean validSolution() {
+        return this.placedPieces==numberOfInitialPieces;
+
     }
 }

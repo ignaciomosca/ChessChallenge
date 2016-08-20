@@ -13,8 +13,9 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class ChessChallengeSolver {
 
     public static List<Board> solution(Board board, List<ChessPiece> pieces, List<Board> solutions) {
-        if (pieces.isEmpty() && board.getPlacedPieces()==board.getNumberOfInitialPieces()) {
+        if (pieces.isEmpty() && board.validSolution()) {
             solutions.add(board);
+            board.showBoard();
         }
 
         CopyOnWriteArrayList<Position> positions = new CopyOnWriteArrayList<>(board.getPositions());
@@ -26,11 +27,7 @@ public class ChessChallengeSolver {
                     board.place(p, c);
                     chessPieces.remove(c);
                     positions.remove(p);
-                    board.showBoard();
                     solution(board, chessPieces, solutions);
-                    chessPieces.add(c);
-                    positions.add(p);
-                    board.remove(p);
                 }
             }
         }
