@@ -21,18 +21,24 @@ public class ChessChallengeSolver {
             board.showBoard();
         } else {
             for (int i = 0; i < pieces.size(); i++) {
-                ChessPiece c = pieces.get(i);
                 List<ChessPiece> candidatePositions = board.emptyPositions();
                 for (int j = 0; j < candidatePositions.size(); j++) {
+                    ChessPiece c = candidatePiece(candidatePositions.get(j),pieces.get(i));
                     if (isSafe(c, board)) {
-                        board.place(c);
                         pieces.remove(c);
-                        solution(board, pieces, solutions);
+                        solution(board.place(c), pieces, solutions);
                     }
                 }
             }
         }
         return solutions;
+    }
+
+    private static ChessPiece candidatePiece(ChessPiece position, ChessPiece chessPiece) {
+        ChessPiece candidate = chessPiece;
+        candidate.setRow(position.getRow());
+        candidate.setCol(position.getCol());
+        return candidate;
     }
 
     /**

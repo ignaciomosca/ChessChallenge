@@ -1,4 +1,4 @@
-package com.trycatch.chess.inputValidation;
+package com.trycatch.chess.inputvalidation;
 
 import com.trycatch.chess.board.Board;
 import com.trycatch.chess.exceptions.UndefinedPieceException;

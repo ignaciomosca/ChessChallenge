@@ -9,6 +9,9 @@ import java.util.List;
  */
 public class Knight extends ChessPiece {
 
+    private static final int[] X_MOVES = new int[]{1, 2, 2, 1, -1, -2, -2, -1};
+    private static final int[] Y_MOVES = new int[]{-2, -1, 1, 2, 2, 1, -1, -2};
+
     public Knight(int row, int col) {
         super(row, col);
     }
@@ -17,14 +20,10 @@ public class Knight extends ChessPiece {
         int row = this.getRow();
         int col = this.getCol();
         List<ChessPiece> possibleMoves = new ArrayList<>();
-        for (int i = -2; i <= 2; i++) {
-            for (int j = -2; j <= 2; j++) {
-                if (i != j) {
-                    possibleMoves.add(new Knight(row + i, col + j));
-                }
-            }
+        for (int i = 0; i < 8; i++) {
+            possibleMoves.add(new Knight(row + X_MOVES[i], col + Y_MOVES[i]));
         }
-        return false;
+        return possibleMoves.contains(dest);
     }
 
     @Override

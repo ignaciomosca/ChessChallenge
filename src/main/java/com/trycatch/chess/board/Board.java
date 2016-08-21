@@ -22,6 +22,12 @@ public class Board {
         initializePositions(m, n);
     }
 
+    public Board(int m, int n, ChessPiece[][] positions) {
+        this.M = m;
+        this.N = n;
+        this.positions = positions;
+    }
+
     private void initializePositions(int m, int n) {
         this.positions = new ChessPiece[M][N];
         for (int row = 1; row < m; row++) {
@@ -40,21 +46,9 @@ public class Board {
         System.out.println();
     }
 
-    public void place(ChessPiece piece) {
+    public Board place(ChessPiece piece) {
         this.positions[piece.getRow()][piece.getCol()] = piece;
-    }
-
-    public List<ChessPiece> placedPieces() {
-        List<ChessPiece> placedPieces = new ArrayList<>();
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                ChessPiece piece = this.positions[i][j];
-                if (!piece.toString().equals("_")) {
-                    placedPieces.add(piece);
-                }
-            }
-        }
-        return placedPieces;
+        return new Board(M,N,positions);
     }
 
     public ChessPiece findPiece(int row, int col) {
@@ -78,6 +72,16 @@ public class Board {
         return this.positions[p.getRow()][p.getCol()].toString().equals("_");
     }
 
+    public boolean isSafe(ChessPiece c) {
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                ChessPiece p = this.positions[i][j];
+                return (isEmpty(p) && (!c.attacks(p)) || (!p.attacks(c)));
+            }
+        }
+        return true;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -88,15 +92,5 @@ public class Board {
         if (M != board.M) return false;
         if (N != board.N) return false;
         return positions != null ? positions.equals(board.positions) : board.positions == null;
-    }
-
-    public boolean isSafe(ChessPiece c) {
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                ChessPiece p = this.positions[i][j];
-                return (!c.attacks(p)) || (!p.attacks(c));
-            }
-        }
-        return true;
     }
 }

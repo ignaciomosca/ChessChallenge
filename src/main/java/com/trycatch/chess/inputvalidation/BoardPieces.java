@@ -1,4 +1,4 @@
-package com.trycatch.chess.inputValidation;
+package com.trycatch.chess.inputvalidation;
 
 import com.trycatch.chess.board.Board;
 import com.trycatch.chess.pieces.ChessPiece;
@@ -21,10 +21,6 @@ public class BoardPieces {
 
     public Board getBoard() {
         return board;
-    }
-
-    public void setBoard(Board board) {
-        this.board = board;
     }
 
     public List<ChessPiece> getPieces() {

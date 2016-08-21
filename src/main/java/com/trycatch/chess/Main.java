@@ -3,13 +3,12 @@ package com.trycatch.chess;
 import com.trycatch.chess.algorithm.ChessChallengeSolver;
 import com.trycatch.chess.board.Board;
 import com.trycatch.chess.exceptions.UndefinedPieceException;
-import com.trycatch.chess.inputValidation.BoardPieces;
-import com.trycatch.chess.inputValidation.Validation;
+import com.trycatch.chess.inputvalidation.BoardPieces;
+import com.trycatch.chess.inputvalidation.Validation;
 import com.trycatch.chess.pieces.ChessPiece;
 
 import java.util.ArrayList;
 import java.util.List;
-
 
 /**
  * Main class

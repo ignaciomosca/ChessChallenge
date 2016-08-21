@@ -35,4 +35,23 @@ public abstract class ChessPiece {
     public void setCol(int col) {
         this.col = col;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        ChessPiece that = (ChessPiece) o;
+
+        if (row != that.row) return false;
+        return col == that.col;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = row;
+        result = 31 * result + col;
+        return result;
+    }
 }
