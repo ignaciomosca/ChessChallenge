@@ -17,11 +17,14 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         try {
+            long startTime = System.currentTimeMillis();
             BoardPieces boardPieces = Validation.parseInput(args);
             Board initialBoard = boardPieces.getBoard();
             List<ChessPiece> pieces = boardPieces.getPieces();
             List<Board> solutions = ChessChallengeSolver.solution(initialBoard, pieces, new ArrayList<>());
+            long finishTime = System.currentTimeMillis();
             System.out.println("Number of Solutions: " + solutions.size());
+            System.out.println("Total Time: "+(finishTime-startTime)+" ms");
         } catch (UndefinedPieceException e) {
             e.printStackTrace();
         }

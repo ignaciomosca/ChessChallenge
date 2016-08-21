@@ -1,5 +1,7 @@
 package com.trycatch.chess.pieces;
 
+import com.trycatch.chess.inputvalidation.Validation;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,11 @@ public class Knight extends ChessPiece {
         int col = this.getCol();
         List<ChessPiece> possibleMoves = new ArrayList<>();
         for (int i = 0; i < 8; i++) {
-            possibleMoves.add(new Knight(row + X_MOVES[i], col + Y_MOVES[i]));
+            int destRow = row + X_MOVES[i];
+            int destCol = col + Y_MOVES[i];
+            if (destRow > 0 && destCol > 0) {
+                possibleMoves.add(Validation.parseName(dest.toString(),destRow,destCol));
+            }
         }
         return possibleMoves.contains(dest);
     }

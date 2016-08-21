@@ -19,7 +19,7 @@ public class ChessChallengeSolver {
      */
     public static List<Board> solution(Board board, List<ChessPiece> pieces, List<Board> solutions) {
         if (board.isValidSolution()) {
-            if(!solutions.contains(board)){
+            if (!solutions.contains(board)) {
                 solutions.add(board);
                 board.showBoard();
             }
@@ -27,13 +27,15 @@ public class ChessChallengeSolver {
             List<ChessPiece> auxPieces = new ArrayList<>(pieces);
             for (int i = 1; i < board.getM(); i++) {
                 for (int j = 1; j < board.getN(); j++) {
-                    ChessPiece c = candidatePiece(i, j, pieces.get(0));
-                    if (isSafe(c, board)) {
-                        pieces.remove(c);
-                        Board placedPieceBoard = board.place(c);
-                        solution(placedPieceBoard, pieces, solutions);
-                        board.remove(c);
-                        removePiece(pieces, auxPieces);
+                    if (!pieces.isEmpty()) {
+                        ChessPiece c = candidatePiece(i, j, pieces.get(0));
+                        if (isSafe(c, board)) {
+                            pieces.remove(0);
+                            Board placedPieceBoard = board.place(c);
+                            solution(placedPieceBoard, pieces, solutions);
+                            board.remove(c);
+                            removePiece(pieces, auxPieces);
+                        }
                     }
                 }
             }
