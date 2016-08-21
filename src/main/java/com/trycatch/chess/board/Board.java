@@ -72,22 +72,6 @@ public class Board {
         return positions[row][col];
     }
 
-    public List<ChessPiece> emptyPositions() {
-        List<ChessPiece> emptyPositions = new ArrayList<>();
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                ChessPiece position = this.positions[i][j];
-                if(position==null){
-                    System.out.println("NULL i: "+i+" j: "+j);
-                }
-                if (position.toString().equals("_")) {
-                    emptyPositions.add(position);
-                }
-            }
-        }
-        return emptyPositions;
-    }
-
     public List<ChessPiece> placedPositions() {
         List<ChessPiece> placedPositions = new ArrayList<>();
         for (int i = 1; i < M; i++) {
@@ -122,18 +106,6 @@ public class Board {
         return N;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Board board = (Board) o;
-
-        if (M != board.M) return false;
-        if (N != board.N) return false;
-        return positions != null ? samePieces(positions,board.positions) : board.positions == null;
-    }
-
     public boolean samePieces(ChessPiece[][] positionsA, ChessPiece[][] positionsB){
         for (int i = 1; i < M; i++) {
             for (int j = 1; j < N; j++) {
@@ -145,5 +117,16 @@ public class Board {
         return true;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Board board = (Board) o;
+
+        if (M != board.M) return false;
+        if (N != board.N) return false;
+        return positions != null ? samePieces(positions,board.positions) : board.positions == null;
+    }
 
 }

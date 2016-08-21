@@ -11,9 +11,7 @@ import com.trycatch.chess.pieces.Rook;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by ignacio on 19/08/16.
@@ -22,122 +20,136 @@ public class ChessChallengeSolverTest {
 
     @Test
     public void test3x3Board2Kings1Rook() throws Exception {
-        BoardPieces boardPieces = Validation.parseInput(new String[]{"3","3","K:2;R:1"});
+        BoardPieces boardPieces = Validation.parseInput(new String[]{"3", "3", "K:2;R:1"});
         List<ChessPiece> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
         List<Board> expected = solution3x3Board2Kings1Rook();
-        Assert.assertEquals(expected.size(),actual.size());
-        //Assert.assertEquals(expected, actual);
+        for (int i = 0; i < 4; i++) {
+            Assert.assertTrue(actual.get(i).equals(expected.get(i)));
+        }
     }
 
     @Test
     public void test4x4Board2Rooks4Knights() throws Exception {
-        BoardPieces boardPieces = Validation.parseInput(new String[]{"4","4","N:4;R:2"});
+        BoardPieces boardPieces = Validation.parseInput(new String[]{"4", "4", "N:4;R:2"});
         List<ChessPiece> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
         List<Board> expected = solution4x4Board2Rooks4Knights();
-        Assert.assertEquals(expected.size(),actual.size());
-        // /Assert.assertEquals(expected, actual);
+        for (int i = 0; i < 8; i++) {
+            System.out.println("Test " + (i+1));
+            actual.get(i).showBoard();
+            expected.get(i).showBoard();
+            Assert.assertTrue(actual.get(i).equals(expected.get(i)));
+        }
     }
 
     private List<Board> solution3x3Board2Kings1Rook() {
         List<Board> solutions = new ArrayList<>(4);
         Board boardA = new Board(4, 4, 3);
-        boardA.setPositions(Arrays.asList(new King(1, 1),new King(1, 3),new Rook(3, 2)));
+        boardA.setPositions(Arrays.asList(new King(1, 1),
+                new King(1, 3),
+                new Rook(3, 2)));
         solutions.add(boardA);
 
         Board boardB = new Board(4, 4, 3);
-        boardB.setPositions(Arrays.asList(new Rook(1, 1), new King(3, 1), new Rook(2, 3)));
+        boardB.setPositions(Arrays.asList(new King(1, 1),
+                new King(3, 1),
+                new Rook(2, 3)));
         solutions.add(boardB);
 
         Board boardC = new Board(4, 4, 3);
-        boardC.setPositions(Arrays.asList(new Rook(1, 3), new King(3, 3), new Rook(2, 1)));
+        boardC.setPositions(Arrays.asList(new King(1, 3),
+                new King(3, 3),
+                new Rook(2, 1)));
         solutions.add(boardC);
 
         Board boardD = new Board(4, 4, 3);
-        boardD.setPositions(Arrays.asList(new Rook(3, 1), new King(3, 3), new Rook(1, 2)));
+        boardD.setPositions(Arrays.asList(new King(3, 1),
+                new King(3, 3),
+                new Rook(1, 2)));
         solutions.add(boardD);
 
         return solutions;
     }
+
     private List<Board> solution4x4Board2Rooks4Knights() {
         List<Board> solutions = new ArrayList<>(8);
+
         Board boardA = new Board(5, 5, 6);
-        boardA.place(new Knight(1, 2));
-        boardA.place(new Knight(1, 4));
-        boardA.place(new Knight(3, 2));
-        boardA.place(new Knight(3, 4));
-        boardA.place(new Rook(2, 3));
-        boardA.place(new Rook(4, 1));
+        boardA.setPositions(Arrays.asList(new Knight(1, 1),
+                new Knight(1, 3),
+                new Knight(3, 1),
+                new Knight(3, 3),
+                new Rook(2, 2),
+                new Rook(4, 4)));
         solutions.add(boardA);
 
         Board boardB = new Board(5, 5, 6);
-        boardB.place(new Knight(2, 1));
-        boardB.place(new Knight(1, 4));
-        boardB.place(new Knight(3, 2));
-        boardB.place(new Knight(3, 4));
-        boardB.place(new Rook(1, 3));
-        boardB.place(new Rook(4, 3));
+        boardB.setPositions(Arrays.asList(new Knight(1, 1),
+                new Knight(1, 3),
+                new Knight(3, 1),
+                new Knight(3, 3),
+                new Rook(2, 4),
+                new Rook(4, 2)));
         solutions.add(boardB);
 
         Board boardC = new Board(5, 5, 6);
-        boardC.place(new Knight(2, 2));
-        boardC.place(new Knight(2, 4));
-        boardC.place(new Knight(4, 2));
-        boardC.place(new Knight(4, 4));
-        boardC.place(new Rook(1, 1));
-        boardC.place(new Rook(3, 3));
+        boardC.setPositions(Arrays.asList(new Knight(1, 2),
+                new Knight(1, 4),
+                new Knight(3,2),
+                new Knight(3, 4),
+                new Rook(2, 1),
+                new Rook(4, 3)));
         solutions.add(boardC);
 
         Board boardD = new Board(5, 5, 6);
-        boardD.place(new Knight(2, 2));
-        boardD.place(new Knight(2, 4));
-        boardD.place(new Knight(4, 2));
-        boardD.place(new Knight(4, 4));
-        boardD.place(new Rook(3, 1));
-        boardD.place(new Rook(1, 3));
+        boardD.setPositions(Arrays.asList(new Knight(1, 2),
+                new Knight(1, 4),
+                new Knight(3, 2),
+                new Knight(3, 4),
+                new Rook(2, 3),
+                new Rook(4, 1)));
         solutions.add(boardD);
 
         Board boardE = new Board(5, 5, 6);
-        boardE.place(new Knight(2, 1));
-        boardE.place(new Knight(2, 3));
-        boardE.place(new Knight(4, 1));
-        boardE.place(new Knight(4, 3));
-        boardE.place(new Rook(1, 2));
-        boardE.place(new Rook(3, 4));
+        boardE.setPositions(Arrays.asList(new Knight(2, 1),
+                new Knight(2, 3),
+                new Knight(4, 1),
+                new Knight(4, 3),
+                new Rook(1, 2),
+                new Rook(3, 4)));
         solutions.add(boardE);
 
         Board boardF = new Board(5, 5, 6);
-        boardF.place(new Knight(2, 1));
-        boardF.place(new Knight(2, 3));
-        boardF.place(new Knight(4, 1));
-        boardF.place(new Knight(4, 3));
-        boardF.place(new Rook(1, 4));
-        boardF.place(new Rook(3, 2));
+        boardF.setPositions(Arrays.asList(new Knight(2, 1),
+                new Knight(2, 3),
+                new Knight(4, 1),
+                new Knight(4, 3),
+                new Rook(1, 4),
+                new Rook(3, 2)));
         solutions.add(boardF);
 
         Board boardG = new Board(5, 5, 6);
-        boardG.place(new Knight(1, 1));
-        boardG.place(new Knight(1, 3));
-        boardG.place(new Knight(3, 1));
-        boardG.place(new Knight(3, 3));
-        boardG.place(new Rook(2, 4));
-        boardG.place(new Rook(4, 2));
+        boardG.setPositions(Arrays.asList(new Knight(2, 2),
+                new Knight(2, 4),
+                new Knight(4, 2),
+                new Knight(4, 4),
+                new Rook(1, 1),
+                new Rook(3, 3)));
         solutions.add(boardG);
 
         Board boardH = new Board(5, 5, 6);
-        boardH.place(new Knight(1, 1));
-        boardH.place(new Knight(1, 3));
-        boardH.place(new Knight(3, 1));
-        boardH.place(new Knight(3, 3));
-        boardH.place(new Rook(2, 2));
-        boardH.place(new Rook(4, 4));
+        boardH.setPositions(Arrays.asList(new Knight(2, 2),
+                new Knight(2, 4),
+                new Knight(4, 2),
+                new Knight(4, 4),
+                new Rook(3, 1),
+                new Rook(1, 3)));
         solutions.add(boardH);
-
 
         return solutions;
     }
