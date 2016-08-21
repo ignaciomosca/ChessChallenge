@@ -15,17 +15,32 @@ public class Board {
     private int M;
     private int N;
     private ChessPiece[][] positions;
+    private int initialNumberOfPieces;
+    private List<ChessPiece> usedPieces;
 
-    public Board(int m, int n) {
+    public Board(int m, int n, int initialNumberOfPieces) {
         this.M = m;
         this.N = n;
+        this.initialNumberOfPieces = initialNumberOfPieces;
+        this.usedPieces = new ArrayList<>();
         initializePositions(m, n);
     }
 
-    public Board(int m, int n, ChessPiece[][] positions) {
+    public Board(int m, int n, int initialNumberOfPieces, List<ChessPiece> chessPieces) {
         this.M = m;
         this.N = n;
-        this.positions = positions;
+        this.initialNumberOfPieces = initialNumberOfPieces;
+        initializePositions(M,N);
+        setPositions(chessPieces);
+    }
+
+    private ChessPiece[][] setPositions(List<ChessPiece> chessPieces) {
+        this.usedPieces = new ArrayList<>();
+        for (ChessPiece c : chessPieces) {
+            positions[c.getRow()][c.getCol()] = c;
+            this.usedPieces.add(c);
+        }
+        return this.positions;
     }
 
     private void initializePositions(int m, int n) {
@@ -47,8 +62,10 @@ public class Board {
     }
 
     public Board place(ChessPiece piece) {
-        this.positions[piece.getRow()][piece.getCol()] = piece;
-        return new Board(M,N,positions);
+        Board board = new Board(M, N, initialNumberOfPieces, this.placedPositions());
+        board.usedPieces.add(piece);
+        board.positions[piece.getRow()][piece.getCol()] = piece;
+        return board;
     }
 
     public ChessPiece findPiece(int row, int col) {
@@ -60,6 +77,9 @@ public class Board {
         for (int i = 1; i < M; i++) {
             for (int j = 1; j < N; j++) {
                 ChessPiece position = this.positions[i][j];
+                if(position==null){
+                    System.out.println("NULL i: "+i+" j: "+j);
+                }
                 if (position.toString().equals("_")) {
                     emptyPositions.add(position);
                 }
@@ -82,8 +102,24 @@ public class Board {
     }
 
     public boolean isSafe(ChessPiece c) {
-        System.out.println("HOLA");
-        return placedPositions().stream().filter(p -> (!p.attacks(c) || !c.attacks(p))).count()==0;
+        return placedPositions().stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
+    }
+
+    public void remove(ChessPiece piece) {
+        this.usedPieces.remove(piece);
+        this.positions[piece.getRow()][piece.getCol()] = new NoPiece(piece.getRow(), piece.getCol());
+    }
+
+    public boolean isValidSolution() {
+        return this.initialNumberOfPieces == this.usedPieces.size();
+    }
+
+    public int getM() {
+        return M;
+    }
+
+    public int getN() {
+        return N;
     }
 
     @Override
@@ -95,6 +131,19 @@ public class Board {
 
         if (M != board.M) return false;
         if (N != board.N) return false;
-        return positions != null ? positions.equals(board.positions) : board.positions == null;
+        return positions != null ? samePieces(positions,board.positions) : board.positions == null;
     }
+
+    public boolean samePieces(ChessPiece[][] positionsA, ChessPiece[][] positionsB){
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                if(!positionsA[i][j].equals(positionsB[i][j])){
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+
 }

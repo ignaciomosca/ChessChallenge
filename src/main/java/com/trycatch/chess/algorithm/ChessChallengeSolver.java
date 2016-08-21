@@ -1,8 +1,10 @@
 package com.trycatch.chess.algorithm;
 
 import com.trycatch.chess.board.Board;
+import com.trycatch.chess.inputvalidation.Validation;
 import com.trycatch.chess.pieces.ChessPiece;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,17 +18,23 @@ public class ChessChallengeSolver {
      * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
      */
     public static List<Board> solution(Board board, List<ChessPiece> pieces, List<Board> solutions) {
-        if (pieces.isEmpty()) {
-            solutions.add(board);
-            board.showBoard();
+        if (board.isValidSolution()) {
+            if(!solutions.contains(board)){
+                solutions.add(board);
+            }
         } else {
-            for (int i = 0; i < pieces.size(); i++) {
-                List<ChessPiece> candidatePositions = board.emptyPositions();
-                for (int j = 0; j < candidatePositions.size(); j++) {
-                    ChessPiece c = candidatePiece(candidatePositions.get(j),pieces.get(i));
+            List<ChessPiece> auxPieces = new ArrayList<>(pieces);
+            for (int i = 1; i < board.getM(); i++) {
+                for (int j = 1; j < board.getN(); j++) {
+                    ChessPiece c = candidatePiece(i, j, pieces.get(0));
                     if (isSafe(c, board)) {
                         pieces.remove(c);
-                        solution(board.place(c), pieces, solutions);
+                        Board placedPieceBoard = board.place(c);
+                        placedPieceBoard.showBoard();
+                        System.out.println("Placed Pieces: "+placedPieceBoard.placedPositions().size());
+                        solution(placedPieceBoard, pieces, solutions);
+                        board.remove(c);
+                        removePiece(pieces, auxPieces);
                     }
                 }
             }
@@ -34,11 +42,13 @@ public class ChessChallengeSolver {
         return solutions;
     }
 
-    private static ChessPiece candidatePiece(ChessPiece position, ChessPiece chessPiece) {
-        ChessPiece candidate = chessPiece;
-        candidate.setRow(position.getRow());
-        candidate.setCol(position.getCol());
-        return candidate;
+    private static void removePiece(List<ChessPiece> pieces, List<ChessPiece> chessPieces) {
+        pieces.clear();
+        pieces.addAll(chessPieces);
+    }
+
+    private static ChessPiece candidatePiece(int row, int col, ChessPiece chessPiece) {
+        return Validation.parseName(chessPiece.toString(), row, col);
     }
 
     /**

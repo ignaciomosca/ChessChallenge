@@ -24,7 +24,7 @@ public class Validation {
         int N = Integer.parseInt(args[1]) + 1;
         String piecesInput = args[2];
         List<ChessPiece> chessPieces = parsePieces(piecesInput);
-        return new BoardPieces(new Board(M, N), chessPieces);
+        return new BoardPieces(new Board(M, N, chessPieces.size()), chessPieces);
     }
 
     /**
@@ -43,8 +43,16 @@ public class Validation {
 
     /**
      * Current format is the following
-     * [name of piece in plural]:[number of pieces]
-     * Example format: queens:2;kings:3;
+     * <p>
+     * piece_code:
+     * * King - K
+     * * Queen - Q
+     * * Bishop - B
+     * * Knight - N
+     * * Rook - R
+     * <p>
+     * [piece_code]:[number of pieces]
+     * Example format: Q:2;K:3;
      *
      * @param pieces pieces defined by the user to be used
      * @param pn     represents a piece and how many of them will be in the chess board
@@ -62,21 +70,37 @@ public class Validation {
      * @return an instance of the ChessPiece
      * @throws UndefinedPieceException in case the name of the piece is invalid
      */
-    private static ChessPiece parseName(String pieceName) throws UndefinedPieceException {
-        switch (pieceName.toLowerCase()) {
-            case "queen":
-                return new Queen(0,0);
-            case "king":
-                return new King(0,0);
-            case "rook":
-                return new Rook(0,0);
-            case "bishop":
-                return new Bishop(0,0);
-            case "knight":
-                return new Knight(0,0);
+    public static ChessPiece parseName(String pieceName) throws UndefinedPieceException {
+        switch (pieceName) {
+            case "Q":
+                return new Queen(0, 0);
+            case "K":
+                return new King(0, 0);
+            case "R":
+                return new Rook(0, 0);
+            case "B":
+                return new Bishop(0, 0);
+            case "N":
+                return new Knight(0, 0);
             default:
                 throw new UndefinedPieceException();
         }
+    }
+
+    public static ChessPiece parseName(String pieceName, int row, int col) {
+        switch (pieceName) {
+            case "Q":
+                return new Queen(row, col);
+            case "K":
+                return new King(row, col);
+            case "R":
+                return new Rook(row, col);
+            case "B":
+                return new Bishop(row, col);
+            case "N":
+                return new Knight(row, col);
+        }
+        return new NoPiece(0, 0);
     }
 
 }
