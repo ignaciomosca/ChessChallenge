@@ -34,7 +34,7 @@ public class Board {
         setPositions(chessPieces);
     }
 
-    private ChessPiece[][] setPositions(List<ChessPiece> chessPieces) {
+    public ChessPiece[][] setPositions(List<ChessPiece> chessPieces) {
         this.usedPieces = new ArrayList<>();
         for (ChessPiece c : chessPieces) {
             positions[c.getRow()][c.getCol()] = c;
