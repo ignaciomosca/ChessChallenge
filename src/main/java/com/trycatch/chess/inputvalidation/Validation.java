@@ -51,10 +51,9 @@ public class Validation {
      */
     private static void parsePiece(String pn, List<ChessPiece> pieces) throws UndefinedPieceException {
         String[] pieceNumber = pn.split(":");
-        ChessPiece piece = parseName(pieceNumber[0]);
         int number = Integer.parseInt(pieceNumber[1]);
         for (int i = 0; i < number; i++) {
-            pieces.add(piece);
+            pieces.add(parseName(pieceNumber[0]));
         }
     }
 

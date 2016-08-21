@@ -68,18 +68,22 @@ public class Board {
         return emptyPositions;
     }
 
-    public boolean isEmpty(ChessPiece p){
-        return this.positions[p.getRow()][p.getCol()].toString().equals("_");
+    public List<ChessPiece> placedPositions() {
+        List<ChessPiece> placedPositions = new ArrayList<>();
+        for (int i = 1; i < M; i++) {
+            for (int j = 1; j < N; j++) {
+                ChessPiece position = this.positions[i][j];
+                if (!position.toString().equals("_")) {
+                    placedPositions.add(position);
+                }
+            }
+        }
+        return placedPositions;
     }
 
     public boolean isSafe(ChessPiece c) {
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                ChessPiece p = this.positions[i][j];
-                return (isEmpty(p) && (!c.attacks(p)) || (!p.attacks(c)));
-            }
-        }
-        return true;
+        System.out.println("HOLA");
+        return placedPositions().stream().filter(p -> (!p.attacks(c) || !c.attacks(p))).count()==0;
     }
 
     @Override
