@@ -21,6 +21,7 @@ public class ChessChallengeSolver {
         if (board.isValidSolution()) {
             if(!solutions.contains(board)){
                 solutions.add(board);
+                board.showBoard();
             }
         } else {
             List<ChessPiece> auxPieces = new ArrayList<>(pieces);
@@ -30,8 +31,6 @@ public class ChessChallengeSolver {
                     if (isSafe(c, board)) {
                         pieces.remove(c);
                         Board placedPieceBoard = board.place(c);
-                        placedPieceBoard.showBoard();
-                        System.out.println("Placed Pieces: "+placedPieceBoard.placedPositions().size());
                         solution(placedPieceBoard, pieces, solutions);
                         board.remove(c);
                         removePiece(pieces, auxPieces);
