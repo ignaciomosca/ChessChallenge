@@ -6,6 +6,7 @@ import com.trycatch.chess.pieces.PieceFactory;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by ignacio on 19/08/16.
@@ -17,7 +18,7 @@ public class ChessChallengeSolver {
      * @param pieces Chess Pieces selected by the user
      * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
      */
-    public static List<Board> solution(Board board, List<String> pieces, List<Board> solutions) {
+    public static Set<Board> solution(Board board, List<String> pieces, Set<Board> solutions) {
         if (pieces.isEmpty()) {
             if (!solutions.contains(board)) {
                 solutions.add(board);
@@ -26,22 +27,13 @@ public class ChessChallengeSolver {
             for (int i = 1; i < board.getM(); i++) {
                 for (int j = 1; j < board.getN(); j++) {
                     ChessPiece c = PieceFactory.createPiece(pieces.get(0), i, j);
-                    if (isSafe(c, board)) {
+                    if (board.isSafe(c)) {
                         solution(board.place(c), removeFirstPiece(pieces), solutions);
                     }
                 }
             }
         }
         return solutions;
-    }
-
-    /**
-     * @param c     ChessPiece to be placed
-     * @param board ChessBoard
-     * @return true if no other piece in the board gets attacked by c
-     */
-    private static boolean isSafe(ChessPiece c, Board board) {
-        return board.isSafe(c) && !board.contains(c);
     }
 
     private static List<String> removeFirstPiece(List<String> pieces) {

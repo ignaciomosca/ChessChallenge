@@ -2,9 +2,7 @@ package com.trycatch.chess.board;
 
 import com.trycatch.chess.pieces.ChessPiece;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -15,18 +13,18 @@ public class Board {
 
     private int M;
     private int N;
-    private List<ChessPiece> usedPieces;
+    private Set<ChessPiece> usedPieces;
 
     public Board(int m, int n) {
         this.M = m;
         this.N = n;
-        this.usedPieces = new ArrayList<>();
+        this.usedPieces = new HashSet<>();
     }
 
-    public Board(int m, int n, List<ChessPiece> chessPieces) {
+    public Board(int m, int n, Set<ChessPiece> chessPieces) {
         this.M = m;
         this.N = n;
-        this.usedPieces = new ArrayList<>(chessPieces);
+        this.usedPieces = new HashSet<>(chessPieces);
     }
 
     public void showBoard() {
@@ -40,7 +38,7 @@ public class Board {
     }
 
     public Board place(ChessPiece piece) {
-        List<ChessPiece> pieces = new ArrayList<>(usedPieces);
+        Set<ChessPiece> pieces = new HashSet<>(usedPieces);
         pieces.add(piece);
         return new Board(M, N, pieces);
     }
@@ -49,9 +47,14 @@ public class Board {
         return this.usedPieces.stream().filter(p->p.getCol()==col && p.getRow()==row).findFirst().map(ChessPiece::toString).orElse("_");
     }
 
-
+    /**
+     * @param c     ChessPiece to be placed
+     * @return true if no other piece in the board gets attacked by c and if c is not already placed
+     */
     public boolean isSafe(ChessPiece c) {
-        return this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
+        boolean doesNotAttackOtherPieces = this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
+        boolean isNotAlreadyPlaced = !this.usedPieces.contains(c);
+        return doesNotAttackOtherPieces && isNotAlreadyPlaced;
     }
 
     public int getM() {
@@ -72,13 +75,7 @@ public class Board {
         if (M != board.M) return false;
         if (N != board.N) return false;
         if (usedPieces.size() != board.usedPieces.size()) return false;
-        return samePieces(usedPieces,board.usedPieces);
-    }
-
-    private boolean samePieces(List<ChessPiece> boardA, List<ChessPiece> boardB){
-        Set<ChessPiece> setA = new HashSet<>(boardA);
-        Set<ChessPiece> setB = new HashSet<>(boardB);
-        return setA.containsAll(setB);
+        return usedPieces.containsAll(board.usedPieces);
     }
 
     @Override
@@ -89,7 +86,4 @@ public class Board {
         return result;
     }
 
-    public boolean contains(ChessPiece c) {
-        return this.usedPieces.contains(c);
-    }
 }

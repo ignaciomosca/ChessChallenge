@@ -8,6 +8,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
  * Represents and MxN Chess board
@@ -31,8 +32,8 @@ public class BoardTest {
 
     @Test
     public void testSameBoard() throws Exception{
-        Board boardA = new Board(5,5, Arrays.asList(new King(1,1), new Queen(2,2)));
-        Board boardB = new Board(5,5, Arrays.asList(new King(1,1), new Queen(2,2)));
+        Board boardA = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
+        Board boardB = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Assert.assertEquals(boardA,boardB);
     }
 
