@@ -66,7 +66,7 @@ public class Validation {
     }
 
     /**
-     * @param pieceName recieves the name of the piece
+     * @param pieceName receives the name of the piece
      * @return an instance of the ChessPiece
      * @throws UndefinedPieceException in case the name of the piece is invalid
      */

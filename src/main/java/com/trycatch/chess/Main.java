@@ -23,6 +23,7 @@ public class Main {
             List<ChessPiece> pieces = boardPieces.getPieces();
             List<Board> solutions = ChessChallengeSolver.solution(initialBoard, pieces, new ArrayList<>());
             long finishTime = System.currentTimeMillis();
+            solutions.forEach(Board::showBoard);
             System.out.println("Number of Solutions: " + solutions.size());
             System.out.println("Total Time: "+(finishTime-startTime)+" ms");
         } catch (UndefinedPieceException e) {

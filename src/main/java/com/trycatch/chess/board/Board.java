@@ -26,11 +26,7 @@ public class Board {
     public Board(int m, int n, List<ChessPiece> chessPieces) {
         this.M = m;
         this.N = n;
-        this.usedPieces = setPositions(chessPieces);
-    }
-
-    public List<ChessPiece> setPositions(List<ChessPiece> chessPieces) {
-        return new ArrayList<>(chessPieces);
+        this.usedPieces = new ArrayList<>(chessPieces);
     }
 
     public void showBoard() {
@@ -44,7 +40,7 @@ public class Board {
     }
 
     public Board place(ChessPiece piece) {
-        List<ChessPiece> pieces = new ArrayList<>(getUsedPieces());
+        List<ChessPiece> pieces = new ArrayList<>(usedPieces);
         pieces.add(piece);
         return new Board(M, N, pieces);
     }
@@ -56,10 +52,6 @@ public class Board {
 
     public boolean isSafe(ChessPiece c) {
         return this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
-    }
-
-    public List<ChessPiece> getUsedPieces() {
-        return usedPieces;
     }
 
     public int getM() {
@@ -95,5 +87,9 @@ public class Board {
         result = 31 * result + N;
         result = 31 * result + usedPieces.hashCode();
         return result;
+    }
+
+    public boolean contains(ChessPiece c) {
+        return this.usedPieces.contains(c);
     }
 }

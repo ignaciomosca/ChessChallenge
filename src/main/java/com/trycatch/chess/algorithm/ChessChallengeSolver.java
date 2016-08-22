@@ -21,7 +21,6 @@ public class ChessChallengeSolver {
         if (pieces.isEmpty()) {
             if (!solutions.contains(board)) {
                 solutions.add(board);
-                board.showBoard();
             }
         } else {
             for (int i = 1; i < board.getM(); i++) {
@@ -54,7 +53,7 @@ public class ChessChallengeSolver {
      * @return true if no other piece in the board gets attacked by c
      */
     private static boolean isSafe(ChessPiece c, Board board) {
-        return board.isSafe(c) && !board.getUsedPieces().contains(c);
+        return board.isSafe(c) && !board.contains(c);
     }
 
 }
