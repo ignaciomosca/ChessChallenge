@@ -15,3 +15,40 @@ The number of pieces of each type (King, Queen, Bishop, Rook and Knight) to try 
 As output, the program should list all the unique configurations to the console for which all of the pieces can be placed on the board without threatening each other.
 
 When returning your solution, please provide with your answer the total number of unique configurations for a 7×7 board with 2 Kings, 2 Queens, 2 Bishops and 1 Knight. Also provide the time it took to get the final score. Needless to say, the lower the time, the better.
+
+# The Solution
+
+The following solution is based on the [N-Queen Problem](https://developers.google.com/optimization/puzzles/queens) which is a well known optimization problem taught in Computer Science Classes. The proposed solution makes use of a technique called backtracking to find all the solutions to the problem.
+Based on experience with previous problems, I reduced the current problem to an N-Queen problem with an 8x8 Board. I figured that after being able to get the solution for that problem, solving the rest of it was a matter of adding more pieces, determining how they moved, and writing unit tests for them.
+
+# Usage
+
+The proposed solution receives the parameters through the console in the form of: **M** **N** **[piece_code]:[number of pieces]**
+
+`Example format: Q:2;K:3;`
+
+Where:
+* M is the number of rows
+* N the number of columns
+* [piece_code]:[number of pieces] which is a string which is parsed to determine which pieces will be used and how many of them there will be.
+
+**piece_code** must follow the following format:
+
+`King - K`
+`Queen - Q`
+`Bishop - B`
+`Knight - N`
+`Rook - R`
+
+# Dependencies
+
+* JDK 1.8
+* Maven 3
+
+# Instructions
+
+`clone repo`
+`cd ChessChallenge`
+`mvn clean install`
+`cd target`
+`java -jar chess-challenge-1.0-SNAPSHOT.jar 7 7 B:2;Q:2;K:2;N:1`
