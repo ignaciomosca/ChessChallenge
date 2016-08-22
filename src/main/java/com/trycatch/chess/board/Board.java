@@ -71,8 +71,8 @@ public class Board {
 
         if (M != board.M) return false;
         if (N != board.N) return false;
+        if (usedPieces.size() != board.usedPieces.size()) return false;
         return samePieces(usedPieces,board.usedPieces);
-
     }
 
     private boolean samePieces(List<ChessPiece> boardA, List<ChessPiece> boardB){

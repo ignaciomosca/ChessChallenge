@@ -5,7 +5,6 @@ import com.trycatch.chess.board.Board;
 import com.trycatch.chess.exceptions.UndefinedPieceException;
 import com.trycatch.chess.inputvalidation.BoardPieces;
 import com.trycatch.chess.inputvalidation.Validation;
-import com.trycatch.chess.pieces.ChessPiece;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +19,7 @@ public class Main {
             long startTime = System.currentTimeMillis();
             BoardPieces boardPieces = Validation.parseInput(args);
             Board initialBoard = boardPieces.getBoard();
-            List<ChessPiece> pieces = boardPieces.getPieces();
+            List<String> pieces = boardPieces.getPieces();
             List<Board> solutions = ChessChallengeSolver.solution(initialBoard, pieces, new ArrayList<>());
             long finishTime = System.currentTimeMillis();
             solutions.forEach(Board::showBoard);

@@ -4,14 +4,15 @@ import com.trycatch.chess.algorithm.ChessChallengeSolver;
 import com.trycatch.chess.board.Board;
 import com.trycatch.chess.inputvalidation.BoardPieces;
 import com.trycatch.chess.inputvalidation.Validation;
-import com.trycatch.chess.pieces.ChessPiece;
 import com.trycatch.chess.pieces.King;
 import com.trycatch.chess.pieces.Knight;
 import com.trycatch.chess.pieces.Rook;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by ignacio on 19/08/16.
@@ -21,7 +22,7 @@ public class ChessChallengeSolverTest {
     @Test
     public void test3x3Board2Kings1Rook() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"3", "3", "K:2;R:1"});
-        List<ChessPiece> pieces = boardPieces.getPieces();
+        List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
@@ -32,7 +33,7 @@ public class ChessChallengeSolverTest {
     @Test
     public void test4x4Board2Rooks4Knights() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"4", "4", "N:4;R:2"});
-        List<ChessPiece> pieces = boardPieces.getPieces();
+        List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);

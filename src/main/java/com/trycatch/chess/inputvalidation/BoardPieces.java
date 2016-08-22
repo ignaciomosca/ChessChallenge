@@ -1,7 +1,6 @@
 package com.trycatch.chess.inputvalidation;
 
 import com.trycatch.chess.board.Board;
-import com.trycatch.chess.pieces.ChessPiece;
 
 import java.util.List;
 
@@ -12,22 +11,22 @@ import java.util.List;
 public class BoardPieces {
     private Board board;
 
-    public BoardPieces(Board board, List<ChessPiece> pieces) {
+    public BoardPieces(Board board, List<String> pieces) {
         this.board = board;
         this.pieces = pieces;
     }
 
-    private List<ChessPiece> pieces;
+    private List<String> pieces;
 
     public Board getBoard() {
         return board;
     }
 
-    public List<ChessPiece> getPieces() {
+    public List<String> getPieces() {
         return pieces;
     }
 
-    public void setPieces(List<ChessPiece> pieces) {
+    public void setPieces(List<String> pieces) {
         this.pieces = pieces;
     }
 }

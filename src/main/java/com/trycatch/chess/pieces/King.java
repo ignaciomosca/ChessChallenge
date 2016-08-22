@@ -1,7 +1,5 @@
 package com.trycatch.chess.pieces;
 
-import com.trycatch.chess.inputvalidation.Validation;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +24,7 @@ public class King extends ChessPiece {
             int destRow = row + X_MOVES[i];
             int destCol = col + Y_MOVES[i];
             if (destRow > 0 && destCol > 0) {
-                possibleMoves.add(Validation.parseName(dest.toString(),destRow,destCol));
+                possibleMoves.add(PieceFactory.createPiece(dest.toString(),destRow,destCol));
             }
         }
         return possibleMoves.contains(dest);
