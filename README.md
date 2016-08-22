@@ -34,11 +34,11 @@ Where:
 
 **piece_code** must follow the following format:
 
-`King - K`
-`Queen - Q`
-`Bishop - B`
-`Knight - N`
-`Rook - R`
+* `King - K`
+* `Queen - Q`
+* `Bishop - B`
+* `Knight - N`
+* `Rook - R`
 
 # Dependencies
 
@@ -47,8 +47,8 @@ Where:
 
 # Instructions
 
-`clone repo`
-`cd ChessChallenge`
-`mvn clean install`
-`cd target`
-`java -jar chess-challenge-1.0-SNAPSHOT.jar 7 7 B:2;Q:2;K:2;N:1`
+* Clone repo
+* cd ChessChallenge
+* mvn clean install
+* cd target
+* java -jar chess-challenge-1.0-SNAPSHOT.jar 7 7 B:2;Q:2;K:2;N:1
