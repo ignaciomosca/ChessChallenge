@@ -26,9 +26,7 @@ public class ChessChallengeSolverTest {
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
         List<Board> expected = solution3x3Board2Kings1Rook();
-        for (int i = 0; i < 4; i++) {
-            Assert.assertTrue(actual.get(i).equals(expected.get(i)));
-        }
+        Assert.assertArrayEquals(actual.toArray(), expected.toArray());
     }
 
     @Test
@@ -39,12 +37,7 @@ public class ChessChallengeSolverTest {
         List<Board> solutions = new ArrayList<>();
         List<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
         List<Board> expected = solution4x4Board2Rooks4Knights();
-        for (int i = 0; i < 8; i++) {
-            System.out.println("Test " + (i+1));
-            actual.get(i).showBoard();
-            expected.get(i).showBoard();
-            Assert.assertTrue(actual.get(i).equals(expected.get(i)));
-        }
+        Assert.assertArrayEquals(actual.toArray(), expected.toArray());
     }
 
     private List<Board> solution3x3Board2Kings1Rook() {
