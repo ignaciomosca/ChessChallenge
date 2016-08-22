@@ -47,7 +47,7 @@ Where:
 
 # Instructions
 
-* Clone repo
+* git clone https://github.com/ignaciomosca/ChessChallenge.git
 * cd ChessChallenge
 * mvn clean install
 * cd target
