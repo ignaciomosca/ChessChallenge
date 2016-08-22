@@ -86,7 +86,7 @@ public class Board {
     }
 
     public boolean isSafe(ChessPiece c) {
-        return placedPositions().stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
+        return this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
     }
 
     public void remove(ChessPiece piece) {
