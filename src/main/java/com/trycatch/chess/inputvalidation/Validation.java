@@ -24,7 +24,7 @@ public class Validation {
         int N = Integer.parseInt(args[1]) + 1;
         String piecesInput = args[2];
         List<ChessPiece> chessPieces = parsePieces(piecesInput);
-        return new BoardPieces(new Board(M, N, chessPieces.size()), chessPieces);
+        return new BoardPieces(new Board(M, N), chessPieces);
     }
 
     /**
@@ -100,7 +100,7 @@ public class Validation {
             case "N":
                 return new Knight(row, col);
         }
-        return new NoPiece(0, 0);
+        return null;
     }
 
 }

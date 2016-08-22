@@ -1,10 +1,11 @@
 package com.trycatch.chess.board;
 
 import com.trycatch.chess.pieces.ChessPiece;
-import com.trycatch.chess.pieces.NoPiece;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents and MxN Chess board
@@ -14,88 +15,51 @@ public class Board {
 
     private int M;
     private int N;
-    private ChessPiece[][] positions;
-    private int initialNumberOfPieces;
     private List<ChessPiece> usedPieces;
 
-    public Board(int m, int n, int initialNumberOfPieces) {
+    public Board(int m, int n) {
         this.M = m;
         this.N = n;
-        this.initialNumberOfPieces = initialNumberOfPieces;
         this.usedPieces = new ArrayList<>();
-        initializePositions(m, n);
     }
 
-    public Board(int m, int n, int initialNumberOfPieces, List<ChessPiece> chessPieces) {
+    public Board(int m, int n, List<ChessPiece> chessPieces) {
         this.M = m;
         this.N = n;
-        this.initialNumberOfPieces = initialNumberOfPieces;
-        initializePositions(M,N);
-        setPositions(chessPieces);
+        this.usedPieces = setPositions(chessPieces);
     }
 
-    public ChessPiece[][] setPositions(List<ChessPiece> chessPieces) {
-        this.usedPieces = new ArrayList<>();
-        for (ChessPiece c : chessPieces) {
-            positions[c.getRow()][c.getCol()] = c;
-            this.usedPieces.add(c);
-        }
-        return this.positions;
-    }
-
-    private void initializePositions(int m, int n) {
-        this.positions = new ChessPiece[M][N];
-        for (int row = 1; row < m; row++) {
-            for (int col = 1; col < n; col++) {
-                positions[row][col] = new NoPiece(row, col);
-            }
-        }
+    public List<ChessPiece> setPositions(List<ChessPiece> chessPieces) {
+        return new ArrayList<>(chessPieces);
     }
 
     public void showBoard() {
         for (int r = 1; r < M; r++) {
-            for (int c = 1; c < N; c++)
-                System.out.print(findPiece(r, c).toString() + " ");
+            for (int c = 1; c < N; c++){
+                System.out.print(findPiece(r, c) + " ");
+            }
             System.out.println();
         }
         System.out.println();
     }
 
     public Board place(ChessPiece piece) {
-        Board board = new Board(M, N, initialNumberOfPieces, this.placedPositions());
-        board.usedPieces.add(piece);
-        board.positions[piece.getRow()][piece.getCol()] = piece;
-        return board;
+        List<ChessPiece> pieces = new ArrayList<>(getUsedPieces());
+        pieces.add(piece);
+        return new Board(M, N, pieces);
     }
 
-    public ChessPiece findPiece(int row, int col) {
-        return positions[row][col];
+    public String findPiece(int row, int col) {
+        return this.usedPieces.stream().filter(p->p.getCol()==col && p.getRow()==row).findFirst().map(ChessPiece::toString).orElse("_");
     }
 
-    public List<ChessPiece> placedPositions() {
-        List<ChessPiece> placedPositions = new ArrayList<>();
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                ChessPiece position = this.positions[i][j];
-                if (!position.toString().equals("_")) {
-                    placedPositions.add(position);
-                }
-            }
-        }
-        return placedPositions;
-    }
 
     public boolean isSafe(ChessPiece c) {
         return this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
     }
 
-    public void remove(ChessPiece piece) {
-        this.usedPieces.remove(piece);
-        this.positions[piece.getRow()][piece.getCol()] = new NoPiece(piece.getRow(), piece.getCol());
-    }
-
-    public boolean isValidSolution() {
-        return this.initialNumberOfPieces == this.usedPieces.size();
+    public List<ChessPiece> getUsedPieces() {
+        return usedPieces;
     }
 
     public int getM() {
@@ -104,17 +68,6 @@ public class Board {
 
     public int getN() {
         return N;
-    }
-
-    public boolean samePieces(ChessPiece[][] positionsA, ChessPiece[][] positionsB){
-        for (int i = 1; i < M; i++) {
-            for (int j = 1; j < N; j++) {
-                if(!positionsA[i][j].equals(positionsB[i][j])){
-                    return false;
-                }
-            }
-        }
-        return true;
     }
 
     @Override
@@ -126,7 +79,21 @@ public class Board {
 
         if (M != board.M) return false;
         if (N != board.N) return false;
-        return positions != null ? samePieces(positions,board.positions) : board.positions == null;
+        return samePieces(usedPieces,board.usedPieces);
+
     }
 
+    private boolean samePieces(List<ChessPiece> boardA, List<ChessPiece> boardB){
+        Set<ChessPiece> setA = new HashSet<>(boardA);
+        Set<ChessPiece> setB = new HashSet<>(boardB);
+        return setA.containsAll(setB);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = M;
+        result = 31 * result + N;
+        result = 31 * result + usedPieces.hashCode();
+        return result;
+    }
 }

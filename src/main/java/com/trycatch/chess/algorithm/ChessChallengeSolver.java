@@ -18,23 +18,18 @@ public class ChessChallengeSolver {
      * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
      */
     public static List<Board> solution(Board board, List<ChessPiece> pieces, List<Board> solutions) {
-        if (board.isValidSolution()) {
+        if (pieces.isEmpty()) {
             if (!solutions.contains(board)) {
                 solutions.add(board);
                 board.showBoard();
             }
         } else {
-            List<ChessPiece> auxPieces = new ArrayList<>(pieces);
             for (int i = 1; i < board.getM(); i++) {
                 for (int j = 1; j < board.getN(); j++) {
                     if (!pieces.isEmpty()) {
                         ChessPiece c = candidatePiece(i, j, pieces.get(0));
                         if (isSafe(c, board)) {
-                            pieces.remove(0);
-                            Board placedPieceBoard = board.place(c);
-                            solution(placedPieceBoard, pieces, solutions);
-                            board.remove(c);
-                            removePiece(pieces, auxPieces);
+                            solution(board.place(c), removeFirstPiece(pieces), solutions);
                         }
                     }
                 }
@@ -43,9 +38,10 @@ public class ChessChallengeSolver {
         return solutions;
     }
 
-    private static void removePiece(List<ChessPiece> pieces, List<ChessPiece> chessPieces) {
-        pieces.clear();
-        pieces.addAll(chessPieces);
+    private static List<ChessPiece> removeFirstPiece(List<ChessPiece> pieces) {
+        List<ChessPiece> removedPiece = new ArrayList<>(pieces);
+        removedPiece.remove(0);
+        return removedPiece;
     }
 
     private static ChessPiece candidatePiece(int row, int col, ChessPiece chessPiece) {
@@ -58,7 +54,7 @@ public class ChessChallengeSolver {
      * @return true if no other piece in the board gets attacked by c
      */
     private static boolean isSafe(ChessPiece c, Board board) {
-        return board.isSafe(c);
+        return board.isSafe(c) && !board.getUsedPieces().contains(c);
     }
 
 }

@@ -42,25 +42,25 @@ public class ChessChallengeSolverTest {
 
     private List<Board> solution3x3Board2Kings1Rook() {
         List<Board> solutions = new ArrayList<>(4);
-        Board boardA = new Board(4, 4, 3);
+        Board boardA = new Board(4, 4);
         boardA.setPositions(Arrays.asList(new King(1, 1),
                 new King(1, 3),
                 new Rook(3, 2)));
         solutions.add(boardA);
 
-        Board boardB = new Board(4, 4, 3);
+        Board boardB = new Board(4, 4);
         boardB.setPositions(Arrays.asList(new King(1, 1),
                 new King(3, 1),
                 new Rook(2, 3)));
         solutions.add(boardB);
 
-        Board boardC = new Board(4, 4, 3);
+        Board boardC = new Board(4, 4);
         boardC.setPositions(Arrays.asList(new King(1, 3),
                 new King(3, 3),
                 new Rook(2, 1)));
         solutions.add(boardC);
 
-        Board boardD = new Board(4, 4, 3);
+        Board boardD = new Board(4, 4);
         boardD.setPositions(Arrays.asList(new King(3, 1),
                 new King(3, 3),
                 new Rook(1, 2)));
@@ -72,7 +72,7 @@ public class ChessChallengeSolverTest {
     private List<Board> solution4x4Board2Rooks4Knights() {
         List<Board> solutions = new ArrayList<>(8);
 
-        Board boardA = new Board(5, 5, 6);
+        Board boardA = new Board(5, 5);
         boardA.setPositions(Arrays.asList(new Knight(1, 1),
                 new Knight(1, 3),
                 new Knight(3, 1),
@@ -81,7 +81,7 @@ public class ChessChallengeSolverTest {
                 new Rook(4, 4)));
         solutions.add(boardA);
 
-        Board boardB = new Board(5, 5, 6);
+        Board boardB = new Board(5, 5);
         boardB.setPositions(Arrays.asList(new Knight(1, 1),
                 new Knight(1, 3),
                 new Knight(3, 1),
@@ -90,7 +90,7 @@ public class ChessChallengeSolverTest {
                 new Rook(4, 2)));
         solutions.add(boardB);
 
-        Board boardC = new Board(5, 5, 6);
+        Board boardC = new Board(5, 5);
         boardC.setPositions(Arrays.asList(new Knight(1, 2),
                 new Knight(1, 4),
                 new Knight(3,2),
@@ -99,7 +99,7 @@ public class ChessChallengeSolverTest {
                 new Rook(4, 3)));
         solutions.add(boardC);
 
-        Board boardD = new Board(5, 5, 6);
+        Board boardD = new Board(5, 5);
         boardD.setPositions(Arrays.asList(new Knight(1, 2),
                 new Knight(1, 4),
                 new Knight(3, 2),
@@ -108,7 +108,7 @@ public class ChessChallengeSolverTest {
                 new Rook(4, 1)));
         solutions.add(boardD);
 
-        Board boardE = new Board(5, 5, 6);
+        Board boardE = new Board(5, 5);
         boardE.setPositions(Arrays.asList(new Knight(2, 1),
                 new Knight(2, 3),
                 new Knight(4, 1),
@@ -117,7 +117,7 @@ public class ChessChallengeSolverTest {
                 new Rook(3, 4)));
         solutions.add(boardE);
 
-        Board boardF = new Board(5, 5, 6);
+        Board boardF = new Board(5, 5);
         boardF.setPositions(Arrays.asList(new Knight(2, 1),
                 new Knight(2, 3),
                 new Knight(4, 1),
@@ -126,7 +126,7 @@ public class ChessChallengeSolverTest {
                 new Rook(3, 2)));
         solutions.add(boardF);
 
-        Board boardG = new Board(5, 5, 6);
+        Board boardG = new Board(5, 5);
         boardG.setPositions(Arrays.asList(new Knight(2, 2),
                 new Knight(2, 4),
                 new Knight(4, 2),
@@ -135,7 +135,7 @@ public class ChessChallengeSolverTest {
                 new Rook(3, 3)));
         solutions.add(boardG);
 
-        Board boardH = new Board(5, 5, 6);
+        Board boardH = new Board(5, 5);
         boardH.setPositions(Arrays.asList(new Knight(2, 2),
                 new Knight(2, 4),
                 new Knight(4, 2),

@@ -31,8 +31,8 @@ public class BoardTest {
 
     @Test
     public void testSameBoard() throws Exception{
-        Board boardA = new Board(5,5,2, Arrays.asList(new King(1,1), new Queen(2,2)));
-        Board boardB = new Board(5,5,2, Arrays.asList(new King(1,1), new Queen(2,2)));
+        Board boardA = new Board(5,5, Arrays.asList(new King(1,1), new Queen(2,2)));
+        Board boardB = new Board(5,5, Arrays.asList(new King(1,1), new Queen(2,2)));
         Assert.assertEquals(boardA,boardB);
     }
 
