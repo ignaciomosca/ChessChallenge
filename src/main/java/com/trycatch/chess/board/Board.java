@@ -75,15 +75,19 @@ public class Board {
         if (M != board.M) return false;
         if (N != board.N) return false;
         if (usedPieces.size() != board.usedPieces.size()) return false;
-        return usedPieces.containsAll(board.usedPieces);
+        return samePieces(usedPieces,board.usedPieces);
     }
 
     @Override
     public int hashCode() {
         int result = M;
         result = 31 * result + N;
-        result = 31 * result + usedPieces.hashCode();
+        result = 31 * result + usedPieces.stream().mapToInt(ChessPiece::hashCode).sum();
         return result;
+    }
+
+    private boolean samePieces(Set<ChessPiece> usedPieces, Set<ChessPiece> usedPieces1) {
+        return usedPieces.containsAll(usedPieces1);
     }
 
 }

@@ -11,10 +11,10 @@ public class Queen extends ChessPiece {
     }
 
     public boolean attacks(ChessPiece dest) {
-            boolean sameRow=this.getRow() == dest.getRow();
-            boolean sameCol=this.getCol() == dest.getCol();
-            boolean sameDiag=Math.abs(dest.getRow() - this.getRow()) == Math.abs(dest.getCol() - this.getCol());
-            return sameRow || sameCol || sameDiag;
+        boolean sameRow = this.getRow() == dest.getRow();
+        boolean sameCol = this.getCol() == dest.getCol();
+        boolean sameDiag = Math.abs(dest.getRow() - this.getRow()) == Math.abs(dest.getCol() - this.getCol());
+        return sameRow || sameCol || sameDiag;
     }
 
     @Override

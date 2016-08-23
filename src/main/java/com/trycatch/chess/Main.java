@@ -25,7 +25,7 @@ public class Main {
             long finishTime = System.currentTimeMillis();
             solutions.forEach(Board::showBoard);
             System.out.println("Number of Solutions: " + solutions.size());
-            System.out.println("Total Time: "+(finishTime-startTime)+" ms");
+            System.out.println("Total Time: " + (finishTime - startTime) + " ms");
         } catch (UndefinedPieceException e) {
             e.printStackTrace();
         }

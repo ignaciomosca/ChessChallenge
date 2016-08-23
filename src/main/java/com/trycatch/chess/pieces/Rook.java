@@ -11,8 +11,8 @@ public class Rook extends ChessPiece {
     }
 
     public boolean attacks(ChessPiece dest) {
-        boolean sameRow=this.getRow() == dest.getRow();
-        boolean sameCol=this.getCol() == dest.getCol();
+        boolean sameRow = this.getRow() == dest.getRow();
+        boolean sameCol = this.getCol() == dest.getCol();
         return sameRow || sameCol;
     }
 

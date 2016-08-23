@@ -9,8 +9,8 @@ public class PieceFactory {
 
     /**
      * @param pieceName receives the code of the piece
-     * @param row row of the piece
-     * @param col column of the piece
+     * @param row       row of the piece
+     * @param col       column of the piece
      * @return an instance of the ChessPiece
      * @throws UndefinedPieceException in case the name of the piece is invalid
      */
