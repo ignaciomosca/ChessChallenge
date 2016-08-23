@@ -26,8 +26,9 @@ public class ChessChallengeSolverTest {
         List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> solutions = new HashSet<>();
-        Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
+        Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         Set<Board> expected = solution3x3Board2Kings1Rook();
+        actual.stream().forEach(Board::showBoard);
         Assert.assertTrue(actual.equals(expected));
     }
 
@@ -37,7 +38,7 @@ public class ChessChallengeSolverTest {
         List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> solutions = new HashSet<>();
-        Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions);
+        Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         Set<Board> expected = solution4x4Board2Rooks4Knights();
         Assert.assertTrue(actual.equals(expected));
     }

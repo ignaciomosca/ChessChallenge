@@ -68,26 +68,24 @@ public class Board {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
+
         if (o == null || getClass() != o.getClass()) return false;
 
         Board board = (Board) o;
 
-        if (M != board.M) return false;
-        if (N != board.N) return false;
-        if (usedPieces.size() != board.usedPieces.size()) return false;
-        return samePieces(usedPieces,board.usedPieces);
+        return new org.apache.commons.lang3.builder.EqualsBuilder()
+                .append(M, board.M)
+                .append(N, board.N)
+                .append(usedPieces, board.usedPieces)
+                .isEquals();
     }
 
     @Override
     public int hashCode() {
-        int result = M;
-        result = 31 * result + N;
-        result = 31 * result + usedPieces.stream().mapToInt(ChessPiece::hashCode).sum();
-        return result;
+        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
+                .append(M)
+                .append(N)
+                .append(usedPieces)
+                .toHashCode();
     }
-
-    private boolean samePieces(Set<ChessPiece> usedPieces, Set<ChessPiece> usedPieces1) {
-        return usedPieces.containsAll(usedPieces1);
-    }
-
 }

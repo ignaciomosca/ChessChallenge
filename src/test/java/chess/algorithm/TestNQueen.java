@@ -1,13 +1,17 @@
 package chess.algorithm;
 
 import com.trycatch.chess.algorithm.ChessChallengeSolver;
+import com.trycatch.chess.board.Board;
 import com.trycatch.chess.inputvalidation.BoardPieces;
+import com.trycatch.chess.inputvalidation.Validation;
+import com.trycatch.chess.pieces.Queen;
 import org.junit.Assert;
 import org.junit.Test;
-import java.util.*;
-import com.trycatch.chess.inputvalidation.*;
-import com.trycatch.chess.board.*;
-import com.trycatch.chess.pieces.*;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * To measure performance I ran the 8 queens code with a modified Main class that generated the test from the results.
@@ -17,14 +21,14 @@ import com.trycatch.chess.pieces.*;
  * Created by ignacio on 8/23/16.
  */
 public class TestNQueen {
-    
+
     @Test
     public void testNQueen() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"8", "8", "Q:8"});
         List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> expectedSolutions = solutions();
-        Set<Board> actualSolutions = ChessChallengeSolver.solution(board, pieces, new HashSet<>());
+        Set<Board> actualSolutions = ChessChallengeSolver.solution(board, pieces, new HashSet<>(), new HashSet<>());
         Assert.assertTrue(actualSolutions.size()==expectedSolutions.size());
     }
 
@@ -955,5 +959,5 @@ public class TestNQueen {
 
 
 
-    
+
 }
