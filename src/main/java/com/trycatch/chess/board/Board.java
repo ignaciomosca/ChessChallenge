@@ -3,6 +3,7 @@ package com.trycatch.chess.board;
 import com.trycatch.chess.pieces.ChessPiece;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -65,27 +66,39 @@ public class Board {
         return N;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Board)) return false;
 
         Board board = (Board) o;
 
-        return new org.apache.commons.lang3.builder.EqualsBuilder()
-                .append(M, board.M)
-                .append(N, board.N)
-                .append(usedPieces, board.usedPieces)
-                .isEquals();
+        if (M != board.M) return false;
+        if (N != board.N) return false;
+
+        return usedPieces.equals(board.usedPieces);
+
     }
 
     @Override
     public int hashCode() {
-        return new org.apache.commons.lang3.builder.HashCodeBuilder(17, 37)
-                .append(M)
-                .append(N)
-                .append(usedPieces)
-                .toHashCode();
+        int result = M;
+        result = 31 * result + N;
+        Iterator i = usedPieces.iterator();
+        while (i.hasNext()) {
+            Object obj = i.next();
+            result = 31*result + (obj==null ? 0 : obj.hashCode());
+        }
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Board{" +
+                "M=" + M +
+                ", N=" + N +
+                ", usedPieces=" + usedPieces +
+                '}';
     }
 }

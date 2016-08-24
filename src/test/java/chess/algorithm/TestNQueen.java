@@ -8,10 +8,7 @@ import com.trycatch.chess.pieces.Queen;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * To measure performance I ran the 8 queens code with a modified Main class that generated the test from the results.
@@ -28,8 +25,12 @@ public class TestNQueen {
         List<String> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> expectedSolutions = solutions();
+        long startTime = System.currentTimeMillis();
         Set<Board> actualSolutions = ChessChallengeSolver.solution(board, pieces, new HashSet<>(), new HashSet<>());
-        Assert.assertTrue(actualSolutions.size()==expectedSolutions.size());
+        long finishTime = System.currentTimeMillis();
+        System.out.println("Total Time: " + (finishTime - startTime) + " ms");
+        Assert.assertTrue(expectedSolutions.size()==actualSolutions.size());
+        Assert.assertEquals(expectedSolutions,actualSolutions);
     }
 
     private Set<Board> solutions(){

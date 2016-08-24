@@ -29,7 +29,7 @@ public class ChessChallengeSolverTest {
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         Set<Board> expected = solution3x3Board2Kings1Rook();
         actual.stream().forEach(Board::showBoard);
-        Assert.assertTrue(actual.equals(expected));
+        Assert.assertEquals(expected,actual);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class ChessChallengeSolverTest {
         Set<Board> solutions = new HashSet<>();
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         Set<Board> expected = solution4x4Board2Rooks4Knights();
-        Assert.assertTrue(actual.equals(expected));
+        Assert.assertEquals(expected,actual);
     }
 
     private Set<Board> solution3x3Board2Kings1Rook() {

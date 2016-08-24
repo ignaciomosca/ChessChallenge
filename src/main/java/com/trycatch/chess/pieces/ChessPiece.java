@@ -4,7 +4,7 @@ package com.trycatch.chess.pieces;
  * Represents an abstract Chess Piece
  * Created by ignacio on 19/08/16.
  */
-public abstract class ChessPiece {
+public abstract class ChessPiece implements Comparable<ChessPiece>{
 
     private int row;
     private int col;
@@ -46,4 +46,11 @@ public abstract class ChessPiece {
         result = 31 * result + col;
         return result;
     }
+
+    @Override
+    public int compareTo(ChessPiece p) {
+        return row == p.row ? Integer.compare(col, p.col) : Integer.compare(row, p.row);
+    }
+
+
 }
