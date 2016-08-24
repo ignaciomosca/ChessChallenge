@@ -14,6 +14,8 @@ public class Board {
 
     private int M;
     private int N;
+    //Set of used pieces, since the order is not important, and two pieces shouldn't be repeated I chose Set as a structure
+    //O(1) or retrieval
     private Set<ChessPiece> usedPieces;
 
     public Board(int m, int n) {
@@ -28,6 +30,9 @@ public class Board {
         this.usedPieces = new HashSet<>(chessPieces);
     }
 
+    /***
+     * Displays the board to screen
+     */
     public void showBoard() {
         for (int r = 1; r < M; r++) {
             for (int c = 1; c < N; c++){
@@ -38,12 +43,21 @@ public class Board {
         System.out.println();
     }
 
+    /**
+     * @param piece ChessPiece to be placed
+     * @return a Board with piece placed
+     */
     public Board place(ChessPiece piece) {
         Set<ChessPiece> pieces = new HashSet<>(usedPieces);
         pieces.add(piece);
         return new Board(M, N, pieces);
     }
 
+    /**
+     * @param row
+     * @param col
+     * @return The piece located in (row,col)
+     */
     public String findPiece(int row, int col) {
         return this.usedPieces.stream().filter(p->p.getCol()==col && p.getRow()==row).findFirst().map(ChessPiece::toString).orElse("_");
     }

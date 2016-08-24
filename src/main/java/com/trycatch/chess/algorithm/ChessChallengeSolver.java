@@ -5,7 +5,6 @@ import com.trycatch.chess.pieces.ChessPiece;
 import com.trycatch.chess.pieces.PieceFactory;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +16,8 @@ public class ChessChallengeSolver {
     /***
      * @param board  ChessBoard
      * @param pieces Chess Pieces selected by the user
+     * @param solutions valid solutions to the problem
+     * @param testedConfigurations Board configurations to which solutions were not found
      * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
      */
     public static Set<Board> solution(Board board, List<String> pieces, Set<Board> solutions, Set<Board> testedConfigurations) {
@@ -47,12 +48,6 @@ public class ChessChallengeSolver {
         List<String> removedPiece = new ArrayList<>(pieces);
         removedPiece.remove(0);
         return removedPiece;
-    }
-
-    private static Set<Board> addToSet(Set<Board> testedConfigurations, Board board) {
-        Set<Board> withPiece = new HashSet<>(testedConfigurations);
-        withPiece.add(board);
-        return withPiece;
     }
 
 }
