@@ -23,7 +23,7 @@ Based on experience with previous problems, I reduced the current problem to an 
 
 # Usage
 
-The proposed solution creates the initial condition from a prompt-based wizard 
+The proposed solution creates the initial conditions from a prompt-based wizard 
 
 
 # Dependencies
@@ -31,6 +31,14 @@ The proposed solution creates the initial condition from a prompt-based wizard
 * Git
 * JDK 1.8
 * Maven 3
+
+# JVM Flags
+
+The following flags should be used when running the code in order to get the best performance. Reasons for each one are provided below:
+
+* Because the application creates lots of objects it's important to provide the JVM with more heap memory (Xmx flag) than the default value it already has. Otherwise OutOfMemoryError could ensue.
+* UseConcMarkSweepGC, to prevent pauses in GC
+* The 4th phase of UseConcMarkSweepGC GC, is by default single threaded. You can parallelize it using the flag.
 
 # Instructions
 

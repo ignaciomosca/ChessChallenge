@@ -2,7 +2,6 @@ package com.trycatch.chess;
 
 import com.trycatch.chess.algorithm.ChessChallengeSolver;
 import com.trycatch.chess.board.Board;
-import com.trycatch.chess.exceptions.UndefinedPieceException;
 import com.trycatch.chess.inputvalidation.BoardPieces;
 import com.trycatch.chess.inputvalidation.Validation;
 
@@ -16,19 +15,16 @@ import java.util.Set;
  */
 public class Main {
     public static void main(String[] args) {
-        try {
-            BoardPieces boardPieces = Validation.parseInput(new String[]{"7", "7", "K:2;Q:2;B:2;N:1"});
-            List<String> pieces = boardPieces.getPieces();
-            Board board = boardPieces.getBoard();
-            Set<Board> solutions = new HashSet<>();
-            long startTime = System.currentTimeMillis();
-            Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
-            long finishTime = System.currentTimeMillis();
-            System.out.println("Number of Solutions: " + actual.size());
-            System.out.println("Total Time: " + (finishTime - startTime) + " ms");
-        } catch (UndefinedPieceException e) {
-            e.printStackTrace();
-        }
+        BoardPieces boardPieces = Validation.createMenu();
+        List<String> pieces = boardPieces.getPieces();
+        Board board = boardPieces.getBoard();
+        Set<Board> solutions = new HashSet<>();
+        long startTime = System.currentTimeMillis();
+        Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
+        long finishTime = System.currentTimeMillis();
+        System.out.println("Number of Solutions: " + actual.size());
+        System.out.println("Total Time: " + (finishTime - startTime) + " ms");
+
     }
 }
 

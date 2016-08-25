@@ -47,20 +47,6 @@ public class BoardTest {
     }
 
     @Test
-    public void testSameChessPiece() throws Exception{
-        King k1 = new King(1,1);
-        King k2 = new King(1,1);
-        Assert.assertEquals(k1,k2);
-    }
-
-    @Test
-    public void testNotSameChessPiece() throws Exception{
-        King k = new King(1,1);
-        Queen q = new Queen(2,2);
-        Assert.assertNotEquals(k,q);
-    }
-
-    @Test
     public void testHashBishop() throws Exception{
         Bishop bishopA = new Bishop(1,1);
         Bishop bishopB = new Bishop(1,1);
