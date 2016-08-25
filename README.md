@@ -23,25 +23,12 @@ Based on experience with previous problems, I reduced the current problem to an 
 
 # Usage
 
-The proposed solution receives the parameters through the console in the form of: **M** **N** **[piece_code]:[number of pieces]**
+The proposed solution creates the initial condition from a prompt-based wizard 
 
-`Example format: Q:2;K:3;`
-
-Where:
-* M is the number of rows
-* N the number of columns
-* [piece_code]:[number of pieces] which is a string which is parsed to determine which pieces will be used and how many of them there will be.
-
-**piece_code** must follow the following format:
-
-* `King - K`
-* `Queen - Q`
-* `Bishop - B`
-* `Knight - N`
-* `Rook - R`
 
 # Dependencies
 
+* Git
 * JDK 1.8
 * Maven 3
 
@@ -51,4 +38,4 @@ Where:
 * cd ChessChallenge
 * mvn clean install
 * cd target
-* java -jar chess-challenge-1.0-SNAPSHOT.jar 7 7 B:2;Q:2;K:2;N:1
+* java -jar -server -XX:+UseConcMarkSweepGC -XX:+CMSParallelRemarkEnabled -Xmx4g chess-challenge-1.0-SNAPSHOT.jar

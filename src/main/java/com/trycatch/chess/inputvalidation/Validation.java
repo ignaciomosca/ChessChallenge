@@ -5,6 +5,7 @@ import com.trycatch.chess.exceptions.UndefinedPieceException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * The purpose of this class is to validate the inputs provided by the user
@@ -14,7 +15,7 @@ import java.util.List;
 public class Validation {
 
     /**
-     * @param args console provided input-array
+     * @param args user provided input-array
      * @return a container object that has a Board of MxN dimensions, and a list of ChessPieces provided by the input of the program
      * @throws UndefinedPieceException
      */
@@ -50,8 +51,6 @@ public class Validation {
      * * Knight - N
      * * Rook - R
      * <p>
-     * [piece_code]:[number of pieces]
-     * Example format: Q:2;K:3;
      *
      * @param pieces pieces defined by the user to be used
      * @param pn     represents a piece and how many of them will be in the chess board
@@ -61,6 +60,42 @@ public class Validation {
         int number = Integer.parseInt(pieceNumber[1]);
         for (int i = 0; i < number; i++) {
             pieces.add(pieceNumber[0]);
+        }
+    }
+
+    /***
+     *
+     * @return creates a wizard that creates the initial conditions for the challenge
+     */
+    public static BoardPieces createMenu(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Enter the value of M: ");
+        int M = reader.nextInt()+ 1;
+        System.out.println("Enter the value of N: ");
+        int N = reader.nextInt() + 1;
+        List<String> pieces = new ArrayList<>();
+        createPieces(pieces,"K","Enter the number of Kings: ", reader);
+        createPieces(pieces,"Q","Enter the number of Queens: ", reader);
+        createPieces(pieces,"B","Enter the number of Bishops: ", reader);
+        createPieces(pieces,"N","Enter the number of Knights: ", reader);
+        createPieces(pieces,"R","Enter the number of Rooks: ", reader);
+        return new BoardPieces(new Board(M,N),pieces);
+    }
+
+    /***
+     *
+     * @param pieces list of pieces to be created
+     * @param piece type of piece
+     * @param message message to be displayed to the user
+     * @param reader scanner to obtain input
+     */
+    private static void createPieces(List<String> pieces, String piece, String message, Scanner reader) {
+        System.out.println(message);
+        int quantity = reader.nextInt();
+        if (quantity > 0) {
+            for (int i = 0; i < quantity; i++) {
+                pieces.add(piece);
+            }
         }
     }
 
