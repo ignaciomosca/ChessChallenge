@@ -41,8 +41,7 @@ public class ChessChallengeSolverTest {
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         Set<Board> expected = solution4x4Board2Rooks4Knights();
         actual.stream().forEach(Board::showBoard);
-        Assert.assertTrue(true);
-        //Assert.assertEquals(expected,actual);
+        Assert.assertEquals(expected,actual);
     }
 
     private Set<Board> solution3x3Board2Kings1Rook() {

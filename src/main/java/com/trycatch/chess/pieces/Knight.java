@@ -31,6 +31,11 @@ public class Knight extends ChessPiece {
     }
 
     @Override
+    protected PIECE getKind() {
+        return PIECE.N;
+    }
+
+    @Override
     public String toString() {
         return "N";
     }

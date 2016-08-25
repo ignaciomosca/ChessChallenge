@@ -15,6 +15,11 @@ public class Bishop extends ChessPiece {
     }
 
     @Override
+    protected PIECE getKind() {
+        return PIECE.B;
+    }
+
+    @Override
     public String toString() {
         return "B";
     }

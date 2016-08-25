@@ -31,6 +31,11 @@ public class King extends ChessPiece {
     }
 
     @Override
+    protected PIECE getKind() {
+        return PIECE.K;
+    }
+
+    @Override
     public String toString() {
         return "K";
     }
