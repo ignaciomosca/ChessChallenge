@@ -35,7 +35,6 @@ public class ChessChallengeSolver {
                         } else {
                             if (!solutions.contains(b)) {
                                 solutions.add(b);
-                                System.out.println(solutions.size());
                             }
                         }
                     }
