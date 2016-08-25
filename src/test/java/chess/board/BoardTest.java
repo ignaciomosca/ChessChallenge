@@ -60,5 +60,16 @@ public class BoardTest {
         Assert.assertNotEquals(k,q);
     }
 
+    @Test
+    public void testHashBishop() throws Exception{
+        Bishop bishopA = new Bishop(1,1);
+        Bishop bishopB = new Bishop(1,1);
+        Bishop bishopC = new Bishop(1,2);
+        King kingA = new King(1,1);
+        Assert.assertTrue(bishopA.hashCode()==bishopB.hashCode());
+        Assert.assertTrue(bishopA.hashCode()!=bishopC.hashCode());
+        Assert.assertTrue(bishopA.hashCode()!=kingA.hashCode());
+    }
+
 
 }

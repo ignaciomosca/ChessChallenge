@@ -49,6 +49,7 @@ public abstract class ChessPiece{
     public int hashCode() {
         int result = row;
         result = 31 * result + col;
+        result = 31 * result + getKind().hashCode();
         return result;
     }
 }
