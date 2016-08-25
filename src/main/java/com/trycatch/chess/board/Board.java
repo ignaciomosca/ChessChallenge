@@ -3,6 +3,7 @@ package com.trycatch.chess.board;
 import com.trycatch.chess.pieces.ChessPiece;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -97,7 +98,11 @@ public class Board {
     public int hashCode() {
         int result = M;
         result = 31 * result + N;
-        result = 31 * result + (usedPieces != null ? usedPieces.hashCode() : 0);
+        Iterator i = usedPieces.iterator();
+        while (i.hasNext()) {
+            Object obj = i.next();
+            result = 31*result + (obj==null ? 0 : obj.hashCode());
+        }
         return result;
     }
 

@@ -33,7 +33,7 @@ public class ChessChallengeSolver {
                                 solution(b, removeFirstPiece(pieces), solutions, testedConfigurations);
                             }
                         } else {
-                            if (!solutions.contains(b)) {
+                            if (!solutionAlreadyFound(solutions,b)) {
                                 solutions.add(b);
                             }
                         }
@@ -48,6 +48,10 @@ public class ChessChallengeSolver {
         List<String> removedPiece = new ArrayList<>(pieces);
         removedPiece.remove(0);
         return removedPiece;
+    }
+
+    private static boolean solutionAlreadyFound(Set<Board> solutions, Board board){
+        return solutions.stream().filter(b->b.equals(board)).count()!=0;
     }
 
 }
