@@ -28,6 +28,7 @@ public class TestNQueen {
         Set<Board> actualSolutions = ChessChallengeSolver.solution(board, pieces, new HashSet<>(), new HashSet<>());
         long finishTime = System.currentTimeMillis();
         System.out.println("Total Time: " + (finishTime - startTime) + " ms");
+        actualSolutions.forEach(Board::showBoard);
         Assert.assertTrue(92==actualSolutions.size());
     }
 }

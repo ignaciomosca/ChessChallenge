@@ -22,6 +22,7 @@ public class Main {
         long startTime = System.currentTimeMillis();
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
         long finishTime = System.currentTimeMillis();
+        actual.forEach(Board::showBoard);
         System.out.println("Number of Solutions: " + actual.size());
         System.out.println("Total Time: " + (finishTime - startTime) + " ms");
 
