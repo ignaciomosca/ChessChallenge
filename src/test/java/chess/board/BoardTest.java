@@ -31,17 +31,17 @@ public class BoardTest {
 
     @Test
     public void testSameBoard() throws Exception{
-        Board boardA = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
-        Board boardB = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
+        Board boardA = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
+        Board boardB = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Assert.assertEquals(boardA,boardB);
     }
 
     @Test
     public void testSetContainsBoards() throws Exception{
-        Board boardA = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
-        Board boardB = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,3), new Queen(3,2))));
-        Board boardC = new Board(5,5, new HashSet<>(Arrays.asList(new King(5,5), new Queen(4,4))));
-        Board boardD = new Board(5,5, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
+        Board boardA = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
+        Board boardB = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,3), new Queen(3,2))));
+        Board boardC = new Board(6,6, new HashSet<>(Arrays.asList(new King(5,5), new Queen(4,4))));
+        Board boardD = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Set<Board> setA = new HashSet<>(Arrays.asList(boardA, boardB, boardC));
         Assert.assertTrue(setA.contains(boardD));
     }

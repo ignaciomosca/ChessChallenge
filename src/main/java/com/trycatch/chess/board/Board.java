@@ -2,8 +2,8 @@ package com.trycatch.chess.board;
 
 import com.trycatch.chess.pieces.ChessPiece;
 
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.Set;
 
 /**
@@ -14,20 +14,29 @@ public class Board {
 
     private int M;
     private int N;
-    //Set of used pieces, since the order is not important, and two pieces shouldn't be repeated I chose Set as a structure
-    //O(1) or retrieval
+    //I chose Table as a structure O(1) for retrieval
+    private char[][] board;
     private Set<ChessPiece> usedPieces;
 
     public Board(int m, int n) {
         this.M = m;
         this.N = n;
+        this.board = new char[M][N];
         this.usedPieces = new HashSet<>();
     }
 
-    public Board(int m, int n, Set<ChessPiece> chessPieces) {
+    public Board(int m, int n, Set<ChessPiece> usedPieces) {
         this.M = m;
         this.N = n;
-        this.usedPieces = new HashSet<>(chessPieces);
+        this.board = new char[M][N];
+        this.usedPieces = usedPieces;
+        addUsedPieces(this.board,this.usedPieces);
+    }
+
+    private void addUsedPieces(char[][] board, Set<ChessPiece> usedPieces) {
+        for (ChessPiece p : usedPieces) {
+            board[p.getRow()][p.getCol()] = p.piece();
+        }
     }
 
     /***
@@ -44,13 +53,13 @@ public class Board {
     }
 
     /**
-     * @param piece ChessPiece to be placed
+     * @param p ChessPiece to be placed
      * @return a Board with piece placed
      */
-    public Board place(ChessPiece piece) {
-        Set<ChessPiece> pieces = new HashSet<>(usedPieces);
-        pieces.add(piece);
-        return new Board(M, N, pieces);
+    public Board place(ChessPiece p) {
+        Set<ChessPiece> newUsedPieces = new HashSet<>(this.usedPieces);
+        newUsedPieces.add(p);
+        return new Board(M, N, newUsedPieces);
     }
 
     /**
@@ -58,18 +67,31 @@ public class Board {
      * @param col
      * @return The piece located in (row,col)
      */
-    public String findPiece(int row, int col) {
-        return this.usedPieces.stream().filter(p->p.getCol()==col && p.getRow()==row).findFirst().map(ChessPiece::toString).orElse("_");
+    public char findPiece(int row, int col) {
+        char result = this.board[row][col];
+        if (result=='\u0000'){
+            return '_';
+        }else{
+            return result;
+        }
     }
 
     /**
-     * @param c     ChessPiece to be placed
+     * @param c ChessPiece to be placed
      * @return true if no other piece in the board gets attacked by c and if c is not already placed
      */
     public boolean isSafe(ChessPiece c) {
-        boolean doesNotAttackOtherPieces = this.usedPieces.stream().filter(p -> (p.attacks(c) || c.attacks(p))).count() == 0;
-        boolean isNotAlreadyPlaced = !this.usedPieces.contains(c);
-        return doesNotAttackOtherPieces && isNotAlreadyPlaced;
+        boolean doesNotAttackOtherPieces = doesNotAttackOtherPieces(this.usedPieces,c);
+        return doesNotAttackOtherPieces && notYetPlaced(c);
+    }
+
+    private boolean doesNotAttackOtherPieces(Set<ChessPiece> usedPieces, ChessPiece c) {
+        for (ChessPiece p : usedPieces) {
+            if(p.attacks(c) || c.attacks(p)){
+                return false;
+            }
+        }
+        return true;
     }
 
     public int getM() {
@@ -80,30 +102,27 @@ public class Board {
         return N;
     }
 
+    private boolean notYetPlaced(ChessPiece c){
+        return this.board[c.getRow()][c.getCol()]=='\u0000';
+    }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Board)) return false;
 
-        Board board = (Board) o;
+        Board board1 = (Board) o;
 
-        if (M != board.M) return false;
-        if (N != board.N) return false;
-        return usedPieces != null ? usedPieces.equals(board.usedPieces) : board.usedPieces == null;
+        if (M != board1.M) return false;
+        if (N != board1.N) return false;
+        return usedPieces.equals(board1.usedPieces);
 
     }
 
     @Override
     public int hashCode() {
-        int result = M;
-        result = 31 * result + N;
-        Iterator i = usedPieces.iterator();
-        while (i.hasNext()) {
-            Object obj = i.next();
-            result = 31*result + (obj==null ? 0 : obj.hashCode());
-        }
-        return Long.valueOf(result).hashCode();
+        return 103 * usedPieces.hashCode();
     }
 
     @Override
@@ -111,6 +130,7 @@ public class Board {
         return "Board{" +
                 "M=" + M +
                 ", N=" + N +
+                ", board=" + Arrays.toString(board) +
                 ", usedPieces=" + usedPieces +
                 '}';
     }

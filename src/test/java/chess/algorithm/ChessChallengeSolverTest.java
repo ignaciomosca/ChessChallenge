@@ -23,7 +23,7 @@ public class ChessChallengeSolverTest {
     @Test
     public void test3x3Board2Kings1Rook() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"3", "3", "K:2;R:1"});
-        List<String> pieces = boardPieces.getPieces();
+        List<Character> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> solutions = new HashSet<>();
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());
@@ -35,7 +35,7 @@ public class ChessChallengeSolverTest {
     @Test
     public void test4x4Board2Rooks4Knights() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"4", "4", "N:4;R:2"});
-        List<String> pieces = boardPieces.getPieces();
+        List<Character> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> solutions = new HashSet<>();
         Set<Board> actual = ChessChallengeSolver.solution(board, pieces, solutions, new HashSet<>());

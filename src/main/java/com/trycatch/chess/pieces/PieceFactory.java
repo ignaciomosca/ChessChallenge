@@ -14,17 +14,17 @@ public class PieceFactory {
      * @return an instance of the ChessPiece
      * @throws UndefinedPieceException in case the name of the piece is invalid
      */
-    public static ChessPiece createPiece(String pieceName, int row, int col) {
+    public static ChessPiece createPiece(char pieceName, int row, int col) {
         switch (pieceName) {
-            case "Q":
+            case 'Q':
                 return new Queen(row, col);
-            case "K":
+            case 'K':
                 return new King(row, col);
-            case "R":
+            case 'R':
                 return new Rook(row, col);
-            case "B":
+            case 'B':
                 return new Bishop(row, col);
-            case "N":
+            case 'N':
                 return new Knight(row, col);
         }
         return null;

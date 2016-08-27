@@ -18,8 +18,8 @@ public class Queen extends ChessPiece {
     }
 
     @Override
-    protected PIECE getKind() {
-        return PIECE.Q;
+    public char piece() {
+        return 'Q';
     }
 
     @Override

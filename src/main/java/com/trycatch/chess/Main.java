@@ -16,7 +16,7 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
         BoardPieces boardPieces = Validation.createMenu();
-        List<String> pieces = boardPieces.getPieces();
+        List<Character> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         Set<Board> solutions = new HashSet<>();
         long startTime = System.currentTimeMillis();

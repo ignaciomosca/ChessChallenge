@@ -8,7 +8,6 @@ public abstract class ChessPiece{
 
     private int row;
     private int col;
-    protected enum PIECE {K,Q,B,N,R};
 
     public ChessPiece(int row, int col) {
         this.row = row;
@@ -20,6 +19,8 @@ public abstract class ChessPiece{
      * @return Returns all possible positions that can be reached
      * */
     public abstract boolean attacks(ChessPiece piece);
+
+    public abstract char piece();
 
     public int getRow() {
         return row;
@@ -38,18 +39,15 @@ public abstract class ChessPiece{
 
         if (row != that.row) return false;
         if (col != that.col) return false;
-        return getKind() == that.getKind();
+        return piece() == that.piece();
 
     }
-
-    protected abstract PIECE getKind();
-
 
     @Override
     public int hashCode() {
         int result = row;
         result = 31 * result + col;
-        result = 31 * result + getKind().hashCode();
+        result = 31 * result + piece();
         return result;
     }
 }

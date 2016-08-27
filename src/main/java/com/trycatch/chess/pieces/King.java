@@ -24,15 +24,15 @@ public class King extends ChessPiece {
             int destRow = row + X_MOVES[i];
             int destCol = col + Y_MOVES[i];
             if (destRow > 0 && destCol > 0) {
-                possibleMoves.add(PieceFactory.createPiece(dest.toString(), destRow, destCol));
+                possibleMoves.add(PieceFactory.createPiece(dest.piece(), destRow, destCol));
             }
         }
         return possibleMoves.contains(dest);
     }
 
     @Override
-    protected PIECE getKind() {
-        return PIECE.K;
+    public char piece() {
+        return 'K';
     }
 
     @Override

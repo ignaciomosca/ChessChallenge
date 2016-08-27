@@ -22,7 +22,7 @@ public class TestNQueen {
     @Test
     public void testNQueen() throws Exception {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"8", "8", "Q:8"});
-        List<String> pieces = boardPieces.getPieces();
+        List<Character> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
         long startTime = System.currentTimeMillis();
         Set<Board> actualSolutions = ChessChallengeSolver.solution(board, pieces, new HashSet<>(), new HashSet<>());

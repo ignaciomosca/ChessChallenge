@@ -11,22 +11,22 @@ import java.util.List;
 public class BoardPieces {
     private Board board;
 
-    public BoardPieces(Board board, List<String> pieces) {
+    public BoardPieces(Board board, List<Character> pieces) {
         this.board = board;
         this.pieces = pieces;
     }
 
-    private List<String> pieces;
+    private List<Character> pieces;
 
     public Board getBoard() {
         return board;
     }
 
-    public List<String> getPieces() {
+    public List<Character> getPieces() {
         return pieces;
     }
 
-    public void setPieces(List<String> pieces) {
+    public void setPieces(List<Character> pieces) {
         this.pieces = pieces;
     }
 }

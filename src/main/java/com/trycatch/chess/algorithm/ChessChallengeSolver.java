@@ -20,7 +20,7 @@ public class ChessChallengeSolver {
      * @param testedConfigurations Board configurations to which solutions were not found
      * @return return a list of possible solutions to the problem in the form of a list of filled chess boards
      */
-    public static Set<Board> solution(Board board, List<String> pieces, Set<Board> solutions, Set<Board> testedConfigurations) {
+    public static Set<Board> solution(Board board, List<Character> pieces, Set<Board> solutions, Set<Board> testedConfigurations) {
         if (!pieces.isEmpty()) {
             for (int i = 1; i < board.getM(); i++) {
                 for (int j = 1; j < board.getN(); j++) {
@@ -44,8 +44,8 @@ public class ChessChallengeSolver {
         return solutions;
     }
 
-    private static List<String> removeFirstPiece(List<String> pieces) {
-        List<String> removedPiece = new ArrayList<>(pieces);
+    private static List<Character> removeFirstPiece(List<Character> pieces) {
+        List<Character> removedPiece = new ArrayList<>(pieces);
         removedPiece.remove(0);
         return removedPiece;
     }

@@ -23,7 +23,7 @@ public class Validation {
         int M = Integer.parseInt(args[0]) + 1;
         int N = Integer.parseInt(args[1]) + 1;
         String piecesInput = args[2];
-        List<String> chessPieces = parsePieces(piecesInput);
+        List<Character> chessPieces = parsePieces(piecesInput);
         return new BoardPieces(new Board(M, N), chessPieces);
     }
 
@@ -32,9 +32,9 @@ public class Validation {
      *                    how many of them should be placed on the chess board
      * @return a list of chess pieces
      */
-    private static List<String> parsePieces(String piecesInput) throws UndefinedPieceException {
+    private static List<Character> parsePieces(String piecesInput) throws UndefinedPieceException {
         String[] pieceNumber = piecesInput.split(";");
-        List<String> pieces = new ArrayList<>();
+        List<Character> pieces = new ArrayList<>();
         for (String pn : pieceNumber) {
             parsePiece(pn, pieces);
         }
@@ -55,11 +55,11 @@ public class Validation {
      * @param pieces pieces defined by the user to be used
      * @param pn     represents a piece and how many of them will be in the chess board
      */
-    private static void parsePiece(String pn, List<String> pieces) throws UndefinedPieceException {
+    private static void parsePiece(String pn, List<Character> pieces) throws UndefinedPieceException {
         String[] pieceNumber = pn.split(":");
         int number = Integer.parseInt(pieceNumber[1]);
         for (int i = 0; i < number; i++) {
-            pieces.add(pieceNumber[0]);
+            pieces.add(pieceNumber[0].charAt(0));
         }
     }
 
@@ -73,12 +73,12 @@ public class Validation {
         int M = reader.nextInt()+ 1;
         System.out.println("Enter the value of N: ");
         int N = reader.nextInt() + 1;
-        List<String> pieces = new ArrayList<>();
-        createPieces(pieces,"K","Enter the number of Kings: ", reader);
-        createPieces(pieces,"Q","Enter the number of Queens: ", reader);
-        createPieces(pieces,"B","Enter the number of Bishops: ", reader);
-        createPieces(pieces,"N","Enter the number of Knights: ", reader);
-        createPieces(pieces,"R","Enter the number of Rooks: ", reader);
+        List<Character> pieces = new ArrayList<>();
+        createPieces(pieces,'K',"Enter the number of Kings: ", reader);
+        createPieces(pieces,'Q',"Enter the number of Queens: ", reader);
+        createPieces(pieces,'B',"Enter the number of Bishops: ", reader);
+        createPieces(pieces,'N',"Enter the number of Knights: ", reader);
+        createPieces(pieces,'R',"Enter the number of Rooks: ", reader);
         return new BoardPieces(new Board(M,N),pieces);
     }
 
@@ -89,7 +89,7 @@ public class Validation {
      * @param message message to be displayed to the user
      * @param reader scanner to obtain input
      */
-    private static void createPieces(List<String> pieces, String piece, String message, Scanner reader) {
+    private static void createPieces(List<Character> pieces, Character piece, String message, Scanner reader) {
         System.out.println(message);
         int quantity = reader.nextInt();
         if (quantity > 0) {

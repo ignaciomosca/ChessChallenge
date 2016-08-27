@@ -17,8 +17,8 @@ public class Rook extends ChessPiece {
     }
 
     @Override
-    protected PIECE getKind() {
-        return PIECE.R;
+    public char piece() {
+        return 'R';
     }
 
     @Override
