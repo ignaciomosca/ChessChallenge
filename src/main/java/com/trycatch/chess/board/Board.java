@@ -103,7 +103,7 @@ public class Board {
             Object obj = i.next();
             result = 31*result + (obj==null ? 0 : obj.hashCode());
         }
-        return result;
+        return Long.valueOf(result).hashCode();
     }
 
     @Override
