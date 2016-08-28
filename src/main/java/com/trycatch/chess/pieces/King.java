@@ -35,8 +35,4 @@ public class King extends ChessPiece {
         return 'K';
     }
 
-    @Override
-    public String toString() {
-        return "K";
-    }
 }

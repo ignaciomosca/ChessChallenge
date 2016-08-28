@@ -24,6 +24,7 @@ Based on experience with previous problems, I reduced the current problem to an 
 # Usage
 
 The proposed solution creates the initial conditions from a prompt-based wizard 
+In case one piece were not to be used, enter 0
 
 
 # Dependencies

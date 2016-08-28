@@ -19,8 +19,4 @@ public class Bishop extends ChessPiece {
         return 'B';
     }
 
-    @Override
-    public String toString() {
-        return "B";
-    }
 }

@@ -14,7 +14,6 @@ public class Board {
 
     private int M;
     private int N;
-    //I chose Table as a structure O(1) for retrieval
     private char[][] board;
     private Set<ChessPiece> usedPieces;
 
@@ -33,6 +32,10 @@ public class Board {
         addUsedPieces(this.board,this.usedPieces);
     }
 
+    /***
+     *
+     * @param usedPieces pieces to be set in the board
+     */
     private void addUsedPieces(char[][] board, Set<ChessPiece> usedPieces) {
         for (ChessPiece p : usedPieces) {
             board[p.getRow()][p.getCol()] = p.piece();

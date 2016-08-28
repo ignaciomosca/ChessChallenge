@@ -22,8 +22,4 @@ public class Queen extends ChessPiece {
         return 'Q';
     }
 
-    @Override
-    public String toString() {
-        return "Q";
-    }
 }

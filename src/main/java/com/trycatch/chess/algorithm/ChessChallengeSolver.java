@@ -1,10 +1,10 @@
 package com.trycatch.chess.algorithm;
 
 import com.trycatch.chess.board.Board;
+import com.trycatch.chess.immutableutils.ImmutableUtils;
 import com.trycatch.chess.pieces.ChessPiece;
 import com.trycatch.chess.pieces.PieceFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -30,12 +30,11 @@ public class ChessChallengeSolver {
                         if (pieces.size() != 1) {
                             if (!testedConfigurations.contains(b)) {
                                 testedConfigurations.add(b);
-                                solution(b, removeFirstPiece(pieces), solutions, testedConfigurations);
+                                solution(b, ImmutableUtils.removeFirstPiece(pieces), solutions, testedConfigurations);
                             }
                         } else {
                             if (!solutions.contains(b)) {
                                 solutions.add(b);
-                                System.out.println(solutions.size());
                             }
                         }
                     }
@@ -43,16 +42,6 @@ public class ChessChallengeSolver {
             }
         }
         return solutions;
-    }
-
-    private static List<Character> removeFirstPiece(List<Character> pieces) {
-        List<Character> removedPiece = new ArrayList<>(pieces);
-        removedPiece.remove(0);
-        return removedPiece;
-    }
-
-    private static boolean solutionAlreadyFound(Set<Board> solutions, Board board){
-        return solutions.stream().filter(b->b.equals(board)).count()!=0;
     }
 
 }
