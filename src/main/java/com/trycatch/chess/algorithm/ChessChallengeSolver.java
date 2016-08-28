@@ -33,8 +33,9 @@ public class ChessChallengeSolver {
                                 solution(b, removeFirstPiece(pieces), solutions, testedConfigurations);
                             }
                         } else {
-                            if (!solutionAlreadyFound(solutions,b)) {
+                            if (!solutions.contains(b)) {
                                 solutions.add(b);
+                                System.out.println(solutions.size());
                             }
                         }
                     }

@@ -46,8 +46,8 @@ public abstract class ChessPiece{
     @Override
     public int hashCode() {
         int result = row;
-        result = 31 * result + col;
-        result = 31 * result + piece();
+        result = 103 * result + col;
+        result = 103 * result + piece();
         return result;
     }
 }

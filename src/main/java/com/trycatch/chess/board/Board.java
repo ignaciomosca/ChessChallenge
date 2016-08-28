@@ -116,13 +116,14 @@ public class Board {
 
         if (M != board1.M) return false;
         if (N != board1.N) return false;
-        return usedPieces.equals(board1.usedPieces);
+        if (!Arrays.deepEquals(board, board1.board)) return false;
+        return true;
 
     }
 
     @Override
     public int hashCode() {
-        return 103 * usedPieces.hashCode();
+        return 31 * Arrays.deepHashCode(board);
     }
 
     @Override
