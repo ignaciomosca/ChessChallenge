@@ -1,4 +1,4 @@
-#Chess Challenge
+# Chess Challenge
 
 Below you will find the description of the problem. Using the agreed upon language (no special libraries are needed but you can use external ones if you feel such need), please provide an answer for the question at the end. You should be able to finish the assessment within one week. If you cannot find the solution, please do not worry; it’s not an easy task and we would like to see your thinking and problem solving abilities more than an accurate answer.
 
