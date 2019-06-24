@@ -28,14 +28,11 @@ public class ChessChallengeSolver {
                     if (board.isSafe(c)) {
                         Board b = board.place(c);
                         if (pieces.size() != 1) {
-                            if (!testedConfigurations.contains(b)) {
-                                testedConfigurations.add(b);
+                            if (testedConfigurations.add(b)) {
                                 solution(b, ImmutableUtils.removeFirstPiece(pieces), solutions, testedConfigurations);
                             }
                         } else {
-                            if (!solutions.contains(b)) {
-                                solutions.add(b);
-                            }
+                            solutions.add(b);
                         }
                     }
                 }
