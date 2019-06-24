@@ -5,6 +5,7 @@ import com.test.chess.pieces.ChessPiece;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.Stack;
 
 /**
  * Represents and MxN Chess board
@@ -15,16 +16,16 @@ public class Board {
     private int M;
     private int N;
     private char[][] board;
-    private Set<ChessPiece> usedPieces;
+    private Stack<ChessPiece> usedPieces;
 
     public Board(int m, int n) {
         this.M = m;
         this.N = n;
         this.board = new char[M][N];
-        this.usedPieces = new HashSet<>();
+        this.usedPieces = new Stack<>();
     }
 
-    public Board(int m, int n, Set<ChessPiece> usedPieces) {
+    public Board(int m, int n, Stack<ChessPiece> usedPieces) {
         this.M = m;
         this.N = n;
         this.board = new char[M][N];
@@ -36,7 +37,7 @@ public class Board {
      *
      * @param usedPieces pieces to be set in the board
      */
-    private void addUsedPieces(char[][] board, Set<ChessPiece> usedPieces) {
+    private void addUsedPieces(char[][] board, Stack<ChessPiece> usedPieces) {
         for (ChessPiece p : usedPieces) {
             board[p.getRow()][p.getCol()] = p.piece();
         }
@@ -60,7 +61,7 @@ public class Board {
      * @return a Board with piece placed
      */
     public Board place(ChessPiece p) {
-        Set<ChessPiece> newUsedPieces = new HashSet<>(this.usedPieces);
+        Stack<ChessPiece> newUsedPieces = (Stack<ChessPiece>)this.usedPieces.clone();
         newUsedPieces.add(p);
         return new Board(M, N, newUsedPieces);
     }
@@ -88,7 +89,7 @@ public class Board {
         return doesNotAttackOtherPieces && notYetPlaced(c);
     }
 
-    private boolean doesNotAttackOtherPieces(Set<ChessPiece> usedPieces, ChessPiece c) {
+    private boolean doesNotAttackOtherPieces(Stack<ChessPiece> usedPieces, ChessPiece c) {
         for (ChessPiece p : usedPieces) {
             if(p.attacks(c) || c.attacks(p)){
                 return false;
