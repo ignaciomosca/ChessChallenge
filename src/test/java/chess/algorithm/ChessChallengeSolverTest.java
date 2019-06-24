@@ -1,12 +1,12 @@
 package chess.algorithm;
 
-import com.trycatch.chess.algorithm.ChessChallengeSolver;
-import com.trycatch.chess.board.Board;
-import com.trycatch.chess.inputvalidation.BoardPieces;
-import com.trycatch.chess.inputvalidation.Validation;
-import com.trycatch.chess.pieces.King;
-import com.trycatch.chess.pieces.Knight;
-import com.trycatch.chess.pieces.Rook;
+import com.test.test.algorithm.ChessChallengeSolver;
+import com.test.chess.board.Board;
+import com.test.chess.inputvalidation.BoardPieces;
+import com.test.chess.inputvalidation.Validation;
+import com.test.chess.pieces.King;
+import com.test.chess.pieces.Knight;
+import com.test.chess.pieces.Rook;
 import org.junit.Assert;
 import org.junit.Test;
 

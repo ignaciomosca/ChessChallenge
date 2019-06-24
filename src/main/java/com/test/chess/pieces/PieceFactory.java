@@ -1,6 +1,6 @@
-package com.trycatch.chess.pieces;
+package com.test.chess.pieces;
 
-import com.trycatch.chess.exceptions.UndefinedPieceException;
+import com.test.chess.exceptions.UndefinedPieceException;
 
 /**
  * Created by ignacio on 22/08/16.

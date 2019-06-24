@@ -1,7 +1,9 @@
 package chess.board;
 
-import com.trycatch.chess.board.Board;
-import com.trycatch.chess.pieces.*;
+import com.test.chess.board.Board;
+import com.test.chess.pieces.Bishop;
+import com.test.chess.pieces.King;
+import com.test.chess.pieces.Queen;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -16,28 +18,28 @@ import java.util.Set;
 public class BoardTest {
 
     @Test
-    public void testSamePiece() throws Exception{
+    public void testSamePiece() {
         King kingA = new King(1,1);
         King kingB = new King(1,1);
         Assert.assertEquals(kingA,kingB);
     }
 
     @Test
-    public void testDifferentPiece() throws Exception{
+    public void testDifferentPiece() {
         King king = new King(1,1);
         Bishop bishop = new Bishop(1,1);
         Assert.assertNotEquals(king,bishop);
     }
 
     @Test
-    public void testSameBoard() throws Exception{
+    public void testSameBoard() {
         Board boardA = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Board boardB = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Assert.assertEquals(boardA,boardB);
     }
 
     @Test
-    public void testSetContainsBoards() throws Exception{
+    public void testSetContainsBoards() {
         Board boardA = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,1), new Queen(2,2))));
         Board boardB = new Board(6,6, new HashSet<>(Arrays.asList(new King(1,3), new Queen(3,2))));
         Board boardC = new Board(6,6, new HashSet<>(Arrays.asList(new King(5,5), new Queen(4,4))));
@@ -47,7 +49,7 @@ public class BoardTest {
     }
 
     @Test
-    public void testHashBishop() throws Exception{
+    public void testHashBishop() {
         Bishop bishopA = new Bishop(1,1);
         Bishop bishopB = new Bishop(1,1);
         Bishop bishopC = new Bishop(1,2);

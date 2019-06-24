@@ -1,4 +1,4 @@
-package com.trycatch.chess.pieces;
+package com.test.chess.pieces;
 
 /**
  * Represents a Bishop

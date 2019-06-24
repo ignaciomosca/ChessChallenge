@@ -1,9 +1,9 @@
-package com.trycatch.chess.algorithm;
+package com.test.test.algorithm;
 
-import com.trycatch.chess.board.Board;
-import com.trycatch.chess.immutableutils.ImmutableUtils;
-import com.trycatch.chess.pieces.ChessPiece;
-import com.trycatch.chess.pieces.PieceFactory;
+import com.test.chess.board.Board;
+import com.test.chess.immutableutils.ImmutableUtils;
+import com.test.chess.pieces.ChessPiece;
+import com.test.chess.pieces.PieceFactory;
 
 import java.util.List;
 import java.util.Set;

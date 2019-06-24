@@ -1,4 +1,4 @@
-package com.trycatch.chess.exceptions;
+package com.test.chess.exceptions;
 
 /**
  * Domain Defined Exception for cases where the Piece was misspelled

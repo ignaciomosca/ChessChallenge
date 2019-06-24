@@ -1,6 +1,6 @@
-package com.trycatch.chess.inputvalidation;
+package com.test.chess.inputvalidation;
 
-import com.trycatch.chess.board.Board;
+import com.test.chess.board.Board;
 
 import java.util.List;
 

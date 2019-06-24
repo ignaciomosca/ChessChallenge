@@ -1,7 +1,7 @@
-package com.trycatch.chess.inputvalidation;
+package com.test.chess.inputvalidation;
 
-import com.trycatch.chess.board.Board;
-import com.trycatch.chess.exceptions.UndefinedPieceException;
+import com.test.chess.board.Board;
+import com.test.chess.exceptions.UndefinedPieceException;
 
 import java.util.ArrayList;
 import java.util.List;

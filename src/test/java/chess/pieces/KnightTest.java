@@ -1,6 +1,6 @@
 package chess.pieces;
 
-import com.trycatch.chess.pieces.Knight;
+import com.test.chess.pieces.Knight;
 import org.junit.Assert;
 import org.junit.Test;
 

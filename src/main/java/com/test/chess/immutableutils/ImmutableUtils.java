@@ -1,4 +1,4 @@
-package com.trycatch.chess.immutableutils;
+package com.test.chess.immutableutils;
 
 import java.util.ArrayList;
 import java.util.List;

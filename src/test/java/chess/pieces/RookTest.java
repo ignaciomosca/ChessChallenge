@@ -1,6 +1,6 @@
 package chess.pieces;
 
-import com.trycatch.chess.pieces.Rook;
+import com.test.chess.pieces.Rook;
 import org.junit.Assert;
 import org.junit.Test;
 

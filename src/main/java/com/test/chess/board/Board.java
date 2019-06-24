@@ -1,6 +1,6 @@
-package com.trycatch.chess.board;
+package com.test.chess.board;
 
-import com.trycatch.chess.pieces.ChessPiece;
+import com.test.chess.pieces.ChessPiece;
 
 import java.util.Arrays;
 import java.util.HashSet;
