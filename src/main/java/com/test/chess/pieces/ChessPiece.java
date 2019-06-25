@@ -6,10 +6,11 @@ package com.test.chess.pieces;
  */
 public abstract class ChessPiece{
 
-    private int row;
-    private int col;
+    private final int row;
+    private final int col;
+    public abstract char piece();
 
-    public ChessPiece(int row, int col) {
+    ChessPiece(int row, int col) {
         this.row = row;
         this.col = col;
     }
@@ -19,8 +20,6 @@ public abstract class ChessPiece{
      * @return Returns all possible positions that can be reached
      * */
     public abstract boolean attacks(ChessPiece piece);
-
-    public abstract char piece();
 
     public int getRow() {
         return row;

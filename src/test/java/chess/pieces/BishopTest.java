@@ -10,63 +10,63 @@ import org.junit.Test;
 public class BishopTest {
 
     @Test
-    public void testAttack1() throws Exception {
+    public void testAttack1() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(7, 7);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack2() throws Exception {
+    public void testAttack2() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(6,6);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack3() throws Exception {
+    public void testAttack3() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(4, 6);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack4() throws Exception {
+    public void testAttack4() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(3, 7);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack5() throws Exception {
+    public void testAttack5() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(7, 3);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack6() throws Exception {
+    public void testAttack6() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(6, 4);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack7() throws Exception {
+    public void testAttack7() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(4, 4);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testAttack8() throws Exception {
+    public void testAttack8() {
         Bishop bishopA = new Bishop(5, 5);
         Bishop bishopB = new Bishop(3, 3);
         Assert.assertTrue(bishopA.attacks(bishopB));
     }
 
     @Test
-    public void testDoesNotAttack() throws Exception {
+    public void testDoesNotAttack() {
         Bishop bishopA = new Bishop(1, 1);
         Bishop bishopB = new Bishop(8, 1);
         Assert.assertFalse(bishopA.attacks(bishopB));

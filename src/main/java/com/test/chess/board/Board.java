@@ -3,9 +3,7 @@ package com.test.chess.board;
 import com.test.chess.pieces.ChessPiece;
 
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Stack;
+import java.util.ArrayList;
 
 /**
  * Represents and MxN Chess board
@@ -13,19 +11,19 @@ import java.util.Stack;
  */
 public class Board {
 
-    private int M;
-    private int N;
-    private char[][] board;
-    private Stack<ChessPiece> usedPieces;
+    private final int M;
+    private final int N;
+    private final char[][] board;
+    private final ArrayList<ChessPiece> usedPieces;
 
     public Board(int m, int n) {
         this.M = m;
         this.N = n;
         this.board = new char[M][N];
-        this.usedPieces = new Stack<>();
+        this.usedPieces = new ArrayList<>();
     }
 
-    public Board(int m, int n, Stack<ChessPiece> usedPieces) {
+    public Board(int m, int n, ArrayList<ChessPiece> usedPieces) {
         this.M = m;
         this.N = n;
         this.board = new char[M][N];
@@ -37,7 +35,7 @@ public class Board {
      *
      * @param usedPieces pieces to be set in the board
      */
-    private void addUsedPieces(char[][] board, Stack<ChessPiece> usedPieces) {
+    private void addUsedPieces(char[][] board, ArrayList<ChessPiece> usedPieces) {
         for (ChessPiece p : usedPieces) {
             board[p.getRow()][p.getCol()] = p.piece();
         }
@@ -61,17 +59,17 @@ public class Board {
      * @return a Board with piece placed
      */
     public Board place(ChessPiece p) {
-        Stack<ChessPiece> newUsedPieces = (Stack<ChessPiece>)this.usedPieces.clone();
+        ArrayList<ChessPiece> newUsedPieces = (ArrayList<ChessPiece>)this.usedPieces.clone();
         newUsedPieces.add(p);
         return new Board(M, N, newUsedPieces);
     }
 
     /**
-     * @param row
-     * @param col
+     * @param row row of the piece
+     * @param col col of the piece
      * @return The piece located in (row,col)
      */
-    public char findPiece(int row, int col) {
+    private char findPiece(int row, int col) {
         char result = this.board[row][col];
         if (result=='\u0000'){
             return '_';
@@ -89,7 +87,7 @@ public class Board {
         return doesNotAttackOtherPieces && notYetPlaced(c);
     }
 
-    private boolean doesNotAttackOtherPieces(Stack<ChessPiece> usedPieces, ChessPiece c) {
+    private boolean doesNotAttackOtherPieces(ArrayList<ChessPiece> usedPieces, ChessPiece c) {
         for (ChessPiece p : usedPieces) {
             if(p.attacks(c) || c.attacks(p)){
                 return false;
@@ -120,8 +118,7 @@ public class Board {
 
         if (M != board1.M) return false;
         if (N != board1.N) return false;
-        if (!Arrays.deepEquals(board, board1.board)) return false;
-        return true;
+        return Arrays.deepEquals(board, board1.board);
 
     }
 

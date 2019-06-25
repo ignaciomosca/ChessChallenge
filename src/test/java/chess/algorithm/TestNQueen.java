@@ -20,7 +20,7 @@ import java.util.Set;
  */
 public class TestNQueen {
     @Test
-    public void testNQueen() throws Exception {
+    public void testNQueen() {
         BoardPieces boardPieces = Validation.parseInput(new String[]{"8", "8", "Q:8"});
         List<Character> pieces = boardPieces.getPieces();
         Board board = boardPieces.getBoard();
@@ -29,6 +29,6 @@ public class TestNQueen {
         long finishTime = System.currentTimeMillis();
         System.out.println("Total Time: " + (finishTime - startTime) + " ms");
         actualSolutions.forEach(Board::showBoard);
-        Assert.assertTrue(92==actualSolutions.size());
+        Assert.assertEquals(92, actualSolutions.size());
     }
 }

@@ -1,7 +1,6 @@
 package com.test.chess.inputvalidation;
 
 import com.test.chess.board.Board;
-import com.test.chess.exceptions.UndefinedPieceException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,9 +16,8 @@ public class Validation {
     /**
      * @param args user provided input-array
      * @return a container object that has a Board of MxN dimensions, and a list of ChessPieces provided by the input of the program
-     * @throws UndefinedPieceException
      */
-    public static BoardPieces parseInput(String[] args) throws UndefinedPieceException {
+    public static BoardPieces parseInput(String[] args) {
         int M = Integer.parseInt(args[0]) + 1;
         int N = Integer.parseInt(args[1]) + 1;
         String piecesInput = args[2];
@@ -32,7 +30,7 @@ public class Validation {
      *                    how many of them should be placed on the chess board
      * @return a list of chess pieces
      */
-    private static List<Character> parsePieces(String piecesInput) throws UndefinedPieceException {
+    private static List<Character> parsePieces(String piecesInput) {
         String[] pieceNumber = piecesInput.split(";");
         List<Character> pieces = new ArrayList<>();
         for (String pn : pieceNumber) {
@@ -55,7 +53,7 @@ public class Validation {
      * @param pieces pieces defined by the user to be used
      * @param pn     represents a piece and how many of them will be in the chess board
      */
-    private static void parsePiece(String pn, List<Character> pieces) throws UndefinedPieceException {
+    private static void parsePiece(String pn, List<Character> pieces) {
         String[] pieceNumber = pn.split(":");
         int number = Integer.parseInt(pieceNumber[1]);
         for (int i = 0; i < number; i++) {

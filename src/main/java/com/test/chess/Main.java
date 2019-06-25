@@ -13,7 +13,7 @@ import java.util.Set;
  * Main class
  * Created by ignacio on 19/08/16.
  */
-public class Main {
+class Main {
     public static void main(String[] args) {
         BoardPieces boardPieces = Validation.createMenu();
         List<Character> pieces = boardPieces.getPieces();

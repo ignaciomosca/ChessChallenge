@@ -9,14 +9,14 @@ import java.util.List;
  * Created by ignacio on 20/08/16.
  */
 public class BoardPieces {
-    private Board board;
+    private final Board board;
 
     public BoardPieces(Board board, List<Character> pieces) {
         this.board = board;
         this.pieces = pieces;
     }
 
-    private List<Character> pieces;
+    private final List<Character> pieces;
 
     public Board getBoard() {
         return board;
@@ -26,7 +26,4 @@ public class BoardPieces {
         return pieces;
     }
 
-    public void setPieces(List<Character> pieces) {
-        this.pieces = pieces;
-    }
 }
